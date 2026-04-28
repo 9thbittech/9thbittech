@@ -7,9 +7,17 @@
   <title>9th Bit Labs — Human-Centric AI Solutions</title>
   <meta name="description"
     content="9th Bit Labs delivers cutting-edge AI automation, web & app development, and content solutions to power your business.">
-  <link
+  <!-- Preconnect to Google Fonts origin to save DNS+TCP handshake time -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Load Google Fonts asynchronously to eliminate render-blocking -->
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap"
-    rel="stylesheet" />
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap" />
+  </noscript>
   <style>
     /* Reset and Variables */
     *,
@@ -37,8 +45,9 @@
       scroll-behavior: smooth;
     }
 
+    /* System font fallback stack prevents FOUT before web fonts load */
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--paper);
       color: var(--ink);
       overflow-x: hidden;
@@ -77,94 +86,77 @@
       object-position: left center;
     }
 
-    /* Services Dropdown */
-    .nav-dropdown {
-      position: relative;
-    }
-
-    .nav-dropdown>a {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-dropdown>a::after {
-      content: '';
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-right: 1.5px solid currentColor;
-      border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg) translateY(-2px);
-      transition: transform 0.2s;
-    }
-
-    .nav-dropdown:hover>a::after,
-    .nav-dropdown.open>a::after {
-      transform: rotate(-135deg) translateY(-2px);
-    }
-
-    .dropdown-menu {
+    /* ── Mega Menu ── */
+    #navServicesItem { position: relative; }
+    .mega-wrap {
       display: none;
       position: absolute;
       top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 0;
+      left: auto;
+      width: 680px;
+      max-width: calc(100vw - 1rem);
       background: var(--paper);
       border: 1px solid var(--border);
-      min-width: 210px;
-      box-shadow: 0 8px 24px rgba(14, 14, 14, 0.12);
-      z-index: 200;
+      border-top: 2px solid var(--rust);
+      box-shadow: 0 12px 40px rgba(14,14,14,0.12);
+      z-index: 150;
+      grid-template-columns: 210px 1fr;
+    }
+    .mega-wrap.open { display: grid; }
+    .mega-cats {
+      border-right: 1px solid var(--border);
       padding: 0.5rem 0;
-      border-radius: 4px;
-      /* Bridge gap: transparent top padding so mouse doesn't lose hover */
-      margin-top: 8px;
+      background: var(--paper-alt);
     }
-
-    /* Invisible bridge between nav item and dropdown */
-    .dropdown-menu::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 0;
-      right: 0;
-      height: 10px;
-      background: transparent;
-    }
-
-    .nav-dropdown:hover .dropdown-menu,
-    .nav-dropdown.open .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-menu a {
+    .mega-cat-btn {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 0.75rem 1.25rem;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.7rem 1.25rem;
+      background: none;
+      border: none;
+      border-left: 2px solid transparent;
+      text-align: left;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .mega-cat-btn:hover { color: var(--ink); background: var(--paper); }
+    .mega-cat-btn.active { color: var(--ink); border-left-color: var(--rust); background: var(--paper); }
+    .mega-cat-btn svg { opacity: 0.4; flex-shrink: 0; transition: opacity 0.15s; }
+    .mega-cat-btn.active svg, .mega-cat-btn:hover svg { opacity: 0.8; }
+    .mega-subcat-panels { position: relative; padding: 1.25rem 1.5rem; }
+    .mega-panel { display: none; }
+    .mega-panel.active { display: grid; grid-template-columns: repeat(2,1fr); gap: 3px; align-content: start; }
+    .mega-panel-empty { display: flex; align-items: center; padding: 1.5rem 0; }
+    .mega-panel-empty p { color: var(--muted); font-size: 13px; font-style: italic; }
+    .mega-subcat-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      color: var(--slate);
       font-size: 14px;
       font-weight: 500;
-      color: var(--slate) !important;
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
-      white-space: nowrap;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      transition: all 0.15s;
+      gap: 0.5rem;
     }
-
-    .dropdown-menu a:hover {
-      background: var(--paper-alt);
-      color: var(--rust) !important;
-    }
-
-    .dropdown-menu a .dd-icon {
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .dropdown-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 0.25rem 0;
-    }
+    .mega-subcat-link:hover { background: var(--paper-alt); color: var(--ink); border-color: var(--border); }
+    .mega-subcat-link .msl-arrow { font-size: 10px; color: var(--rust); opacity: 0.6; transition: all 0.15s; flex-shrink: 0; }
+    .mega-subcat-link:hover .msl-arrow { opacity: 1; transform: translateX(3px); }
+    .mega-panel-cta { grid-column: 1/-1; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .mega-panel-cta a { font-size: 12px; color: var(--rust); text-decoration: none; font-weight: 600; letter-spacing: 0.05em; }
+    .mega-panel-cta a:hover { text-decoration: underline; }
 
     .nav-links {
       display: flex;
@@ -565,87 +557,145 @@
       line-height: 1.6;
     }
 
-    /* AI Services Grid */
-    .services-grid {
+    /* ── Category Tabs ── */
+    .cat-tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cat-tabs::-webkit-scrollbar { display: none; }
+    .cat-tab {
+      flex-shrink: 0;
+      padding: 0.85rem 1.5rem;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--paper);
+      border: none;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cat-tab:last-child { border-right: none; }
+    .cat-tab:hover { color: var(--ink); background: var(--paper-alt); }
+    .cat-tab.active { background: var(--ink); color: var(--paper); }
+
+    /* ── Subcategory Cards ── */
+    .subcat-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
     }
-
-    .service-card {
+    .subcat-card {
       background: var(--paper);
-      padding: 3rem 2.5rem;
-      position: relative;
-      transition: background 0.3s;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .service-card:hover {
-      background: var(--ink);
-    }
-
-    .service-card:hover .service-name {
-      color: var(--paper);
-    }
-
-    .service-card:hover .service-desc {
-      color: rgba(245, 242, 236, 0.7);
-    }
-
-    .service-card:hover .service-icon {
-      background: var(--rust);
-      color: var(--paper);
-      border-color: var(--rust);
-    }
-
-    .service-card:hover .service-num {
-      color: rgba(245, 242, 236, 0.08);
-    }
-
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--paper-alt);
-      border: 1px solid var(--border);
+      padding: 2.5rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      margin-bottom: 2rem;
-      transition: all 0.3s;
-      border-radius: 4px;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.25s;
     }
-
-    .service-num {
-      position: absolute;
-      top: 1.5rem;
-      right: 2rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: rgba(14, 14, 14, 0.08);
-      transition: color 0.3s;
-      line-height: 1;
-    }
-
-    .service-name {
+    .subcat-card:hover { background: var(--paper-alt); }
+    .subcat-card-name {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--ink);
-      margin-bottom: 1rem;
-      transition: color 0.3s;
       line-height: 1.2;
     }
-
-    .service-desc {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      font-weight: 400;
-      transition: color 0.3s;
+    .subcat-card-name-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
+    .subcat-card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .niche-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rust);
+      background: var(--rust-light);
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      padding: 2px 8px;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .niche-toggle:hover { background: var(--rust); color: var(--paper); }
+    .niche-toggle .nt-arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-style: normal;
+    }
+    .niche-toggle.open .nt-arrow { transform: rotate(180deg); }
+    .niche-panel {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+    }
+    .niche-panel.open { display: flex; }
+    .niche-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .niche-item:last-child { border-bottom: none; }
+    .niche-item-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--rust);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .niche-item-body h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .niche-item-body p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .cat-cta-card {
+      background: var(--ink);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .cat-cta-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--paper);
+    }
+    .cat-cta-card p { font-size: 14px; color: rgba(245,242,236,0.6); line-height: 1.6; }
 
     /* Development Grid - Editorial style */
     .dev-grid {
@@ -1227,6 +1277,20 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* CSS-based stagger delays — no JS layout reads needed */
+    .process-step:nth-child(1) { transition-delay: 0s; }
+    .process-step:nth-child(2) { transition-delay: 0.1s; }
+    .process-step:nth-child(3) { transition-delay: 0.2s; }
+    .process-step:nth-child(4) { transition-delay: 0.3s; }
+    .test-card:nth-child(1) { transition-delay: 0s; }
+    .test-card:nth-child(2) { transition-delay: 0.1s; }
+    .test-card:nth-child(3) { transition-delay: 0.2s; }
+
+    /* GPU-composited marquee — avoids paint on each frame */
+    .marquee-track {
+      will-change: transform;
+    }
   </style>
 </head>
 
@@ -1234,33 +1298,17 @@
 
   <nav>
     <a href="#" class="logo">
-      <img src="assets/9th_logo.webp" alt="9th Bit Labs" />
+      <!-- Explicit dimensions prevent layout shift (CLS). fetchpriority=high helps LCP -->
+      <img src="assets/9th_logo.webp" alt="9th Bit Labs" width="140" height="36"
+        fetchpriority="high" decoding="async" />
     </a>
     <ul class="nav-links">
-      <li class="nav-dropdown" id="servicesDropdown">
-        <a href="#services">Services</a>
-        <div class="dropdown-menu">
-          <a href="#services">
-            <span class="dd-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-              </svg>
-            </span>
-            AI Automation Services
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#development">
-            <span class="dd-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
-              </svg>
-            </span>
-            Engineering Services
-          </a>
+      <li id="navServicesItem">
+        <a href="#services" id="navServicesLink">Services</a>
+        <!-- Mega Menu drops directly under Services -->
+        <div class="mega-wrap" id="megaMenu" role="navigation" aria-label="Services menu">
+          <div class="mega-cats" id="megaCats"></div>
+          <div class="mega-subcat-panels" id="megaPanels"></div>
         </div>
       </li>
       <li><a href="#process">Process</a></li>
@@ -1350,39 +1398,20 @@
     </div>
   </div>
 
+  <!-- Unified Services Section -->
   <section class="section" id="services">
     <div class="section-header reveal">
       <div style="display:flex; align-items:baseline;">
         <div class="section-num">01</div>
         <div>
-          <h2 class="section-title">AI Automation Services</h2>
-          <p class="section-sub">Transform your operations with intelligent agents that automate workflows, drive sales,
-            and enhance customer experiences.</p>
+          <h2 class="section-title">Our Services</h2>
+          <p class="section-sub">From AI automation to full-stack engineering — every capability your business needs.</p>
         </div>
       </div>
-      <a href="mailto:contact@9thbit.org" class="btn-ghost" style="white-space: nowrap;">Request Audit →</a>
+      <a href="#contact" class="btn-ghost" style="white-space:nowrap;">Start a Project →</a>
     </div>
-
-    <div class="services-grid reveal" id="ai-services-container">
-      <!-- AI Services will be dynamically injected here -->
-    </div>
-  </section>
-
-  <section class="section" id="development" style="padding-top: 4rem;">
-    <div class="section-header reveal">
-      <div style="display:flex; align-items:baseline;">
-        <div class="section-num">02</div>
-        <div>
-          <h2 class="section-title">High-Performance Engineering</h2>
-          <p class="section-sub">Scalable, secure, and blazing fast applications built on modern, future-proof tech
-            stacks.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="dev-grid reveal" id="dev-services-container">
-      <!-- Dev Services will be dynamically injected here -->
-    </div>
+    <div class="cat-tabs reveal" id="catTabs"></div>
+    <div class="subcat-grid reveal" id="subcatGrid"></div>
   </section>
 
   <section class="process-bg" id="process">
@@ -1659,153 +1688,249 @@
     </div>
   </footer>
 
-  <script>
-    // Fetch services data and render dynamically
-    async function loadServices() {
+  <script defer>
+    /* ── Services: fetch + build mega menu + page section ── */
+    async function initServices() {
+      let cats;
       try {
-        const response = await fetch('services.json');
-        const data = await response.json();
+        const res = await fetch('services.json');
+        const data = await res.json();
+        cats = data.categories;
+      } catch(e) { console.error('services.json load failed', e); return; }
 
-        const aiContainer = document.getElementById('ai-services-container');
-        if (aiContainer && data.aiServices) {
-          aiContainer.innerHTML = data.aiServices.map(service => `
-          <div class="service-card">
-            <div class="service-num">${service.num}</div>
-            <div class="service-icon">${service.icon}</div>
-            <div class="service-name">${service.name}</div>
-            <div class="service-desc">${service.desc}</div>
-          </div>
-        `).join('');
-        }
-
-        const devContainer = document.getElementById('dev-services-container');
-        if (devContainer && data.devServices) {
-          devContainer.innerHTML = data.devServices.map(service => `
-          <div class="dev-card">
-            <div class="dev-card-header">
-              <h3 class="dev-title">${service.title}</h3>
-              <span class="dev-tech">${service.tech}</span>
-            </div>
-            <p class="dev-desc">${service.desc}</p>
-          </div>
-        `).join('');
-        }
-
-        // Apply transition delays to dynamically added cards
-        document.querySelectorAll('.service-card, .dev-card').forEach((card, i) => {
-          card.style.transitionDelay = (i % 4 * 0.1) + 's';
-        });
-      } catch (error) {
-        console.error("Error loading services:", error);
-      }
+      buildMegaMenu(cats);
+      buildServicesSection(cats);
+      handleHashNav(cats);
     }
 
-    // Call loadServices immediately
-    loadServices();
+    /* ── Build NVIDIA-style two-panel mega menu ── */
+    function buildMegaMenu(cats) {
+      const catsEl   = document.getElementById('megaCats');
+      const panelsEl = document.getElementById('megaPanels');
+      if (!catsEl || !panelsEl) return;
 
-    // Intersection observer for reveal animations
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
+      // Exclude categories flagged as hidden from the mega menu
+      const menuCats = cats.filter(c => !c.hideFromMegaMenu);
+      menuCats.forEach((cat, i) => {
+        const hasSubcats = cat.subcategories && cat.subcategories.length > 0;
+        // Left: category button
+        const btn = document.createElement('button');
+        btn.className = 'mega-cat-btn' + (i === 0 ? ' active' : '');
+        btn.dataset.catId = cat.id;
+        btn.innerHTML = `<span>${cat.label}</span>${hasSubcats ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>' : ''}`;
+        btn.addEventListener('mouseenter', () => activateMegaCat(cat.id, catsEl, panelsEl));
+        catsEl.appendChild(btn);
+
+        // Right: subcategory panel
+        const panel = document.createElement('div');
+        panel.className = 'mega-panel' + (i === 0 ? ' active' : '');
+        panel.dataset.panelId = cat.id;
+
+        if (!hasSubcats) {
+          panel.classList.add('mega-panel-empty');
+          panel.innerHTML = `<p><em>${cat.label}</em> — contact us to discuss your requirements.</p>`;
+        } else {
+          cat.subcategories.forEach(sub => {
+            const a = document.createElement('a');
+            a.className = 'mega-subcat-link';
+            a.href = `#subcat-${sub.id}`;
+            a.innerHTML = `<span>${sub.label}</span><span class="msl-arrow">→</span>`;
+            a.addEventListener('click', (e) => {
+              e.preventDefault();
+              closeMegaMenu();
+              // Switch to the correct category tab dynamically
+              const tabsEl = document.getElementById('catTabs');
+              const gridEl = document.getElementById('subcatGrid');
+              if (tabsEl && gridEl) switchCategory(cat.id, cats, tabsEl, gridEl);
+              // Scroll to the subcategory card after a short render delay
+              setTimeout(() => {
+                const card = document.getElementById(`subcat-${sub.id}`);
+                if (card) {
+                  const offset = card.getBoundingClientRect().top + window.scrollY - 80;
+                  window.scrollTo({ top: offset, behavior: 'smooth' });
+                } else {
+                  // Fallback: scroll to services section
+                  const sec = document.getElementById('services');
+                  if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 80);
+            });
+            panel.appendChild(a);
+          });
+          const cta = document.createElement('div');
+          cta.className = 'mega-panel-cta';
+          cta.innerHTML = `<a href="#contact">Get a quote for ${cat.label} →</a>`;
+          panel.appendChild(cta);
         }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => io.observe(el));
-
-    // Stagger children in services grid
-    document.querySelectorAll('.service-card, .dev-card, .process-step, .test-card').forEach((card, i) => {
-      card.style.transitionDelay = (i % 4 * 0.1) + 's';
-    });
-
-    const burger = document.getElementById('burgerBtn');
-    const navLinks = document.querySelector('.nav-links');
-
-    burger.addEventListener('click', () => {
-      const isVisible = navLinks.style.display === 'flex';
-      if (isVisible) {
-        navLinks.style.display = 'none';
-      } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.width = '100%';
-        navLinks.style.background = 'var(--paper)';
-        navLinks.style.padding = '2rem 5%';
-        navLinks.style.borderBottom = '1px solid var(--border)';
-        navLinks.style.alignItems = 'flex-start';
-      }
-    });
-
-    // Services dropdown — touch/click toggle for mobile
-    const servicesDropdown = document.getElementById('servicesDropdown');
-    if (servicesDropdown) {
-      servicesDropdown.querySelector('a').addEventListener('click', (e) => {
-        // On narrow screens where hover doesn't apply, toggle the menu
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          servicesDropdown.classList.toggle('open');
-        }
-      });
-      // Close dropdown when a sub-link is clicked
-      servicesDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-          servicesDropdown.classList.remove('open');
-        });
+        panelsEl.appendChild(panel);
       });
     }
 
-    // Close dropdown on outside click
+    function activateMegaCat(id, catsEl, panelsEl) {
+      catsEl.querySelectorAll('.mega-cat-btn').forEach(b => b.classList.toggle('active', b.dataset.catId === id));
+      panelsEl.querySelectorAll('.mega-panel').forEach(p => p.classList.toggle('active', p.dataset.panelId === id));
+    }
+
+    /* Mega menu open/close */
+    const megaMenu   = document.getElementById('megaMenu');
+    const servicesLi = document.getElementById('navServicesItem');
+
+    function openMegaMenu() { megaMenu && megaMenu.classList.add('open'); }
+    function closeMegaMenu() { megaMenu && megaMenu.classList.remove('open'); }
+
+    if (servicesLi) {
+      servicesLi.addEventListener('mouseenter', openMegaMenu);
+      servicesLi.addEventListener('mouseleave', (e) => {
+        if (!megaMenu.contains(e.relatedTarget)) closeMegaMenu();
+      });
+    }
+    if (megaMenu) {
+      megaMenu.addEventListener('mouseleave', closeMegaMenu);
+    }
     document.addEventListener('click', (e) => {
-      if (servicesDropdown && !servicesDropdown.contains(e.target)) {
-        servicesDropdown.classList.remove('open');
+      if (megaMenu && !megaMenu.contains(e.target) && !servicesLi.contains(e.target)) closeMegaMenu();
+    });
+
+    /* ── Build tabbed services section ── */
+    let activeCatId = null;
+
+    function buildServicesSection(cats) {
+      const tabsEl = document.getElementById('catTabs');
+      const gridEl = document.getElementById('subcatGrid');
+      if (!tabsEl || !gridEl) return;
+
+      cats.forEach((cat, i) => {
+        const tab = document.createElement('button');
+        tab.className = 'cat-tab' + (i === 0 ? ' active' : '');
+        tab.textContent = cat.label;
+        tab.dataset.catId = cat.id;
+        tab.addEventListener('click', () => switchCategory(cat.id, cats, tabsEl, gridEl));
+        tabsEl.appendChild(tab);
+      });
+
+      renderSubcatGrid(cats[0], gridEl);
+      activeCatId = cats[0].id;
+    }
+
+    function switchCategory(catId, cats, tabsEl, gridEl) {
+      tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.catId === catId));
+      const cat = cats.find(c => c.id === catId);
+      if (cat) { renderSubcatGrid(cat, gridEl); activeCatId = catId; }
+    }
+
+    function renderSubcatGrid(cat, gridEl) {
+      if (!cat.subcategories || cat.subcategories.length === 0) {
+        gridEl.innerHTML = `
+          <div class="subcat-card" style="grid-column:1/-1; text-align:center; padding:4rem;">
+            <div class="subcat-card-name">${cat.label}</div>
+            <p class="subcat-card-desc" style="max-width:480px;margin:1rem auto 2rem;">${cat.desc}</p>
+            <a href="#contact" class="btn-primary">Discuss Your Requirements →</a>
+          </div>`;
+        return;
+      }
+
+      gridEl.innerHTML = cat.subcategories.map(sub => {
+        const hasNiches = sub.niches && sub.niches.length > 0;
+        const nicheBtn = hasNiches ? `<button class="niche-toggle" data-target="np-${sub.id}" aria-expanded="false">Niches <i class="nt-arrow">↓</i></button>` : '';
+        const nichePanel = hasNiches ? `
+          <div class="niche-panel" id="np-${sub.id}">
+            ${sub.niches.map(n => `
+              <div class="niche-item">
+                <div class="niche-item-dot"></div>
+                <div class="niche-item-body"><h5>${n.label}</h5><p>${n.desc}</p></div>
+              </div>`).join('')}
+          </div>` : '';
+
+        return `
+          <div class="subcat-card" id="subcat-${sub.id}">
+            <div class="subcat-card-name-row">
+              <div class="subcat-card-name">${sub.label}</div>
+              ${nicheBtn}
+            </div>
+            <p class="subcat-card-desc">${sub.desc}</p>
+            ${nichePanel}
+          </div>`;
+      }).join('') + `
+        <div class="cat-cta-card">
+          <h3>Need something custom?</h3>
+          <p>Every business is different. Tell us what you need and we'll craft a solution.</p>
+          <a href="#contact" class="btn-white" style="text-align:center;">Talk to Us →</a>
+        </div>`;
+
+      // Wire niche toggles
+      gridEl.querySelectorAll('.niche-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = document.getElementById(btn.dataset.target);
+          const open = panel.classList.toggle('open');
+          btn.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open);
+        });
+      });
+    }
+
+    /* ── Hash-based direct subcategory navigation ── */
+    function handleHashNav(cats) {
+      const hash = location.hash.replace('#subcat-', '');
+      if (!hash || !location.hash.startsWith('#subcat-')) return;
+      for (const cat of cats) {
+        const sub = (cat.subcategories || []).find(s => s.id === hash);
+        if (sub) {
+          const tabsEl = document.getElementById('catTabs');
+          const gridEl = document.getElementById('subcatGrid');
+          switchCategory(cat.id, cats, tabsEl, gridEl);
+          setTimeout(() => {
+            const el = document.getElementById(`subcat-${hash}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+          break;
+        }
+      }
+    }
+
+    initServices();
+
+    /* ── Intersection observer for reveal animations ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ── Burger menu ── */
+    const burger   = document.getElementById('burgerBtn');
+    const navLinks = document.querySelector('.nav-links');
+    burger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      if (open) { navLinks.style.display = 'none'; }
+      else {
+        Object.assign(navLinks.style, { display:'flex', flexDirection:'column', position:'absolute', top:'100%', left:'0', width:'100%', background:'var(--paper)', padding:'2rem 5%', borderBottom:'1px solid var(--border)', alignItems:'flex-start' });
       }
     });
 
-    // Navbar scroll effect
+    /* ── Navbar scroll glass effect ── */
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.style.background = 'rgba(245,242,236,0.95)';
-        nav.style.backdropFilter = 'blur(10px)';
-      } else {
-        nav.style.background = 'var(--paper)';
-        nav.style.backdropFilter = 'none';
-      }
+      if (window.scrollY > 50) { nav.style.background = 'rgba(245,242,236,0.95)'; nav.style.backdropFilter = 'blur(10px)'; }
+      else { nav.style.background = 'var(--paper)'; nav.style.backdropFilter = 'none'; }
     }, { passive: true });
 
-    // Contact form — AJAX submit (no redirect)
+    /* ── Contact form AJAX ── */
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('formSubmitBtn');
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
-
-        const formData = new FormData(contactForm);
-        // Set _next to current page so FormSubmit doesn't redirect
-        formData.set('_next', window.location.href);
-
+        btn.textContent = 'Sending…'; btn.disabled = true;
+        const fd = new FormData(contactForm);
+        fd.set('_next', window.location.href);
         try {
-          await fetch('https://formsubmit.co/ajax/contact@9thbit.org', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: formData
-          });
+          await fetch('https://formsubmit.co/ajax/contact@9thbit.org', { method:'POST', headers:{'Accept':'application/json'}, body:fd });
           document.getElementById('formBody').style.display = 'none';
           document.getElementById('formSuccess').style.display = 'block';
-        } catch {
-          btn.textContent = 'Failed — try again';
-          btn.disabled = false;
-        }
+        } catch { btn.textContent = 'Failed — try again'; btn.disabled = false; }
       });
     }
   </script>
+
 </body>
 
 </html>
