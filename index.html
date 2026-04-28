@@ -107,16 +107,29 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% + 12px);
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       background: var(--paper);
       border: 1px solid var(--border);
-      min-width: 200px;
+      min-width: 210px;
       box-shadow: 0 8px 24px rgba(14, 14, 14, 0.12);
       z-index: 200;
       padding: 0.5rem 0;
       border-radius: 4px;
+      /* Bridge gap: transparent top padding so mouse doesn't lose hover */
+      margin-top: 8px;
+    }
+
+    /* Invisible bridge between nav item and dropdown */
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: transparent;
     }
 
     .nav-dropdown:hover .dropdown-menu,
@@ -1631,7 +1644,7 @@
         <div class="footer-col">
           <h4>Careers</h4>
           <ul>
-            <li><a href="careers.html">Apply as Intern</a></li>
+            <li><a href="careers.html">Join Us</a></li>
           </ul>
         </div>
       </div>
