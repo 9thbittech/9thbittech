@@ -1,1030 +1,1663 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>9th Bit Technologies — Human-Centric AI Solutions</title>
-<meta name="description" content="9th Bit Technologies delivers cutting-edge AI automation, web & app development, and content solutions to power your business.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-<style>
-  /* Reset and Variables */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --ink: #0E0E0E;
-    --ink-light: #1A1A1A;
-    --paper: #F5F2EC;
-    --paper-alt: #EAE6D9;
-    --rust: #C94B20;
-    --rust-light: #F0D5C8;
-    --slate: #3A3A48;
-    --muted: #7A7A82;
-    --border: rgba(14, 14, 14, 0.12);
-  }
-  html { font-size: 16px; scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9th Bit Labs — Human-Centric AI Solutions</title>
+  <meta name="description"
+    content="9th Bit Labs delivers cutting-edge AI automation, web & app development, and content solutions to power your business.">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* Reset and Variables */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* Navigation */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 5%;
-    background: var(--paper);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--ink);
-    color: var(--paper);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
-    letter-spacing: 1px;
-  }
-  .logo-text {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-  }
-  .logo-text span { color: var(--rust); }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--slate);
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    background: var(--ink);
-    color: var(--paper) !important;
-    padding: 0.6rem 1.5rem;
-    font-weight: 500 !important;
-    letter-spacing: 0.04em !important;
-    border-radius: 4px;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--rust) !important; color: var(--paper) !important; }
-  
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-  .burger span {
-    width: 24px; height: 2px; background: var(--ink); display: block;
-  }
+    :root {
+      --ink: #0E0E0E;
+      --ink-light: #1A1A1A;
+      --paper: #F5F2EC;
+      --paper-alt: #EAE6D9;
+      --rust: #C94B20;
+      --rust-light: #F0D5C8;
+      --slate: #3A3A48;
+      --muted: #7A7A82;
+      --border: rgba(14, 14, 14, 0.12);
+    }
 
-  /* Hero Section */
-  .hero {
-    min-height: 95vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 80px;
-  }
-  .hero-left {
-    padding: 6rem 5% 4rem 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 1px solid var(--border);
-  }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-  }
-  .eyebrow::before {
-    content: '';
-    display: block;
-    width: 24px; height: 1px;
-    background: var(--rust);
-  }
-  .hero-headline {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3.5rem, 6vw, 6rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 2rem;
-  }
-  .hero-headline em {
-    font-style: italic;
-    color: var(--rust);
-  }
-  .hero-sub {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--muted);
-    max-width: 480px;
-    margin-bottom: 3rem;
-    font-weight: 400;
-  }
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 0.85rem 2rem;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--rust); }
-  .btn-ghost {
-    color: var(--ink);
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px;
-    letter-spacing: 0.03em;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .btn-ghost:hover { color: var(--rust); border-color: var(--rust); }
-  
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    padding: 6rem 10% 4rem 5%;
-    justify-content: center;
-    gap: 2rem;
-  }
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
 
-  /* Agent Mock UI */
-  .agent-card {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .agent-card-header {
-    background: var(--ink);
-    padding: 0.85rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .agent-card-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(245,242,236,0.6);
-  }
-  .agent-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: #6ee7b7;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-  .agent-status-dot {
-    width: 6px; height: 6px;
-    background: #6ee7b7;
-    border-radius: 50%;
-    animation: blink 2s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .agent-chat {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .chat-bubble {
-    max-width: 80%;
-    padding: 0.75rem 1rem;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .chat-bubble.user {
-    background: var(--paper-alt);
-    color: var(--ink);
-    border: 1px solid var(--border);
-    align-self: flex-end;
-    font-weight: 400;
-  }
-  .chat-bubble.agent {
-    background: var(--ink);
-    color: var(--paper);
-    align-self: flex-start;
-    font-weight: 300;
-  }
-  .chat-bubble.agent strong {
-    color: #fbbf24;
-    font-weight: 600;
-  }
-  .agent-input-row {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--paper-alt);
-  }
-  .agent-input-fake {
-    flex: 1;
-    font-size: 13px;
-    color: var(--muted);
-    font-style: italic;
-  }
-  .agent-send {
-    background: var(--rust);
-    color: var(--paper);
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* Outcome strips */
-  .outcome-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-  .outcome-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  .outcome-item:last-child { border-bottom: none; }
-  .outcome-item:hover { background: var(--paper-alt); }
-  .outcome-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    color: var(--rust);
-    line-height: 1;
-    flex-shrink: 0;
-    min-width: 60px;
-  }
-  .outcome-text {
-    font-size: 14px;
-    color: var(--slate);
-    line-height: 1.5;
-  }
-  .outcome-text strong {
-    display: block;
-    font-weight: 600;
-    color: var(--ink);
-    font-size: 15px;
-    margin-bottom: 2px;
-  }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 5%;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
 
-  /* Marquee */
-  .marquee-bar {
-    background: var(--rust);
-    padding: 1rem 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-  }
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 25s linear infinite;
-  }
-  .marquee-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0 2rem;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.25rem;
-    letter-spacing: 0.1em;
-    color: var(--paper);
-  }
-  .marquee-dot {
-    width: 6px; height: 6px;
-    background: rgba(245,242,236,0.5);
-    border-radius: 50%;
-    display: inline-block;
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
 
-  /* Section Styles */
-  .section { padding: 8rem 5%; }
-  .section-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 2rem;
-  }
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: var(--ink);
-    line-height: 1.1;
-  }
-  .section-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem;
-    color: rgba(14,14,14,0.06);
-    line-height: 1;
-    margin-right: 1.5rem;
-  }
-  .section-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 500px;
-    margin-top: 1rem;
-    line-height: 1.6;
-  }
+    .logo img {
+      height: 36px;
+      width: auto;
+      max-width: 140px;
+      display: block;
+      object-fit: contain;
+      object-position: left center;
+    }
 
-  /* AI Services Grid */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .service-card {
-    background: var(--paper);
-    padding: 3rem 2.5rem;
-    position: relative;
-    transition: background 0.3s;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .service-card:hover { background: var(--ink); }
-  .service-card:hover .service-name { color: var(--paper); }
-  .service-card:hover .service-desc { color: rgba(245,242,236,0.7); }
-  .service-card:hover .service-icon { background: var(--rust); color: var(--paper); border-color: var(--rust); }
-  .service-card:hover .service-num { color: rgba(245,242,236,0.08); }
-  
-  .service-icon {
-    width: 48px; height: 48px;
-    background: var(--paper-alt);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    margin-bottom: 2rem;
-    transition: all 0.3s;
-    border-radius: 4px;
-  }
-  .service-num {
-    position: absolute;
-    top: 1.5rem; right: 2rem;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    color: rgba(14,14,14,0.08);
-    transition: color 0.3s;
-    line-height: 1;
-  }
-  .service-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    color: var(--ink);
-    margin-bottom: 1rem;
-    transition: color 0.3s;
-    line-height: 1.2;
-  }
-  .service-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--muted);
-    font-weight: 400;
-    transition: color 0.3s;
-  }
+    /* Services Dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
 
-  /* Development Grid - Editorial style */
-  .dev-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-  }
-  .dev-card {
-    border-top: 2px solid var(--ink);
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .dev-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1.5rem;
-  }
-  .dev-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    color: var(--ink);
-  }
-  .dev-tech {
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--rust);
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-  }
-  .dev-desc {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
+    .nav-dropdown>a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-  /* Process */
-  .process-bg {
-    background: var(--ink);
-    padding: 8rem 5%;
-  }
-  .process-bg .section-title { color: var(--paper); }
-  .process-bg .section-header { border-color: rgba(245,242,236,0.15); }
-  .process-bg .section-num { color: rgba(245,242,236,0.05); }
-  .process-bg .section-sub { color: rgba(245,242,236,0.6); }
+    .nav-dropdown>a::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      transition: transform 0.2s;
+    }
 
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(245,242,236,0.15);
-    border: 1px solid rgba(245,242,236,0.15);
-  }
-  .process-step {
-    padding: 3rem 2.5rem;
-    background: var(--ink);
-    transition: background 0.3s;
-  }
-  .process-step:hover {
-    background: #151515;
-  }
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem;
-    color: var(--rust);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-    display: block;
-  }
-  .step-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    color: var(--paper);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .step-desc {
-    font-size: 14px;
-    color: rgba(245,242,236,0.6);
-    line-height: 1.7;
-    font-weight: 400;
-  }
+    .nav-dropdown:hover>a::after,
+    .nav-dropdown.open>a::after {
+      transform: rotate(-135deg) translateY(-2px);
+    }
 
-  /* Testimonials */
-  .testimonials {
-    padding: 8rem 5%;
-    background: var(--paper-alt);
-  }
-  .test-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  .test-card {
-    background: var(--paper);
-    padding: 3rem;
-    border: 1px solid var(--border);
-    position: relative;
-  }
-  .test-quote {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    font-style: italic;
-    color: var(--ink);
-    margin-bottom: 2rem;
-  }
-  .test-quote::before {
-    content: '"';
-    font-family: 'DM Serif Display', serif;
-    font-size: 4rem;
-    color: var(--rust);
-    opacity: 0.3;
-    position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-    line-height: 1;
-  }
-  .test-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-  }
-  .test-author-info h4 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .test-author-info p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 0.2rem;
-  }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--paper);
+      border: 1px solid var(--border);
+      min-width: 200px;
+      box-shadow: 0 8px 24px rgba(14, 14, 14, 0.12);
+      z-index: 200;
+      padding: 0.5rem 0;
+      border-radius: 4px;
+    }
 
-  /* About Grid */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .about-content h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: var(--ink);
-  }
-  .about-content p {
-    font-size: 16px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-  .about-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .about-list-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  .about-list-item::before {
-    content: '→';
-    color: var(--rust);
-    font-weight: bold;
-  }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.open .dropdown-menu {
+      display: block;
+    }
 
-  /* CTA Strip */
-  .cta-strip {
-    background: var(--rust);
-    padding: 6rem 5%;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 3rem;
-  }
-  .cta-headline {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: var(--paper);
-    line-height: 1.1;
-  }
-  .cta-headline em { font-style: italic; }
-  .btn-white {
-    background: var(--paper);
-    color: var(--rust);
-    padding: 1.2rem 3rem;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-white:hover { background: var(--ink); color: var(--paper); }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate) !important;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
 
-  /* Footer */
-  footer {
-    background: var(--ink);
-    padding: 4rem 5% 2rem;
-    color: var(--paper);
-  }
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(245,242,236,0.15);
-    padding-bottom: 3rem;
-    margin-bottom: 2rem;
-  }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    color: var(--paper);
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-  }
-  .footer-desc {
-    color: rgba(245,242,236,0.6);
-    font-size: 14px;
-    max-width: 300px;
-    line-height: 1.6;
-  }
-  .footer-links-wrap {
-    display: flex;
-    gap: 4rem;
-  }
-  .footer-col h4 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,236,0.4);
-    margin-bottom: 1.5rem;
-  }
-  .footer-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .footer-col a {
-    color: rgba(245,242,236,0.8);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--rust); }
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    color: rgba(245,242,236,0.4);
-  }
+    .dropdown-menu a:hover {
+      background: var(--paper-alt);
+      color: var(--rust) !important;
+    }
 
-  /* Responsive */
-  @media(max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; padding-top: 100px; }
-    .hero-left { border-right: none; border-bottom: 1px solid var(--border); padding: 4rem 5%; }
-    .hero-right { padding: 4rem 5%; }
-    .services-grid, .process-steps, .test-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media(max-width: 768px) {
-    .nav-links { display: none; }
-    .burger { display: flex; }
-    .hero-headline { font-size: 3rem; }
-    .dev-grid, .about-grid { grid-template-columns: 1fr; }
-    .services-grid, .process-steps, .test-grid { grid-template-columns: 1fr; }
-    .cta-strip { grid-template-columns: 1fr; text-align: center; }
-    .footer-top { flex-direction: column; gap: 3rem; }
-    .footer-links-wrap { flex-wrap: wrap; }
-  }
+    .dropdown-menu a .dd-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
 
-  /* Reveal Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0.25rem 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: var(--paper) !important;
+      padding: 0.6rem 1.5rem;
+      font-weight: 500 !important;
+      letter-spacing: 0.04em !important;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--rust) !important;
+      color: var(--paper) !important;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .burger span {
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 57px;
+    }
+
+    .hero-left {
+      padding: 3rem 5% 3rem 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-right: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--rust);
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 3rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.85rem 2rem;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--rust);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      letter-spacing: 0.03em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--rust);
+      border-color: var(--rust);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      padding: 6rem 10% 4rem 5%;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    /* Agent Mock UI */
+    .agent-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .agent-card-header {
+      background: var(--ink);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .agent-card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 236, 0.6);
+    }
+
+    .agent-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #6ee7b7;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .agent-status-dot {
+      width: 6px;
+      height: 6px;
+      background: #6ee7b7;
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .agent-chat {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .chat-bubble.user {
+      background: var(--paper-alt);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      align-self: flex-end;
+      font-weight: 400;
+    }
+
+    .chat-bubble.agent {
+      background: var(--ink);
+      color: var(--paper);
+      align-self: flex-start;
+      font-weight: 300;
+    }
+
+    .chat-bubble.agent strong {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .agent-input-row {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--paper-alt);
+    }
+
+    .agent-input-fake {
+      flex: 1;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .agent-send {
+      background: var(--rust);
+      color: var(--paper);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    /* Outcome strips */
+    .outcome-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .outcome-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .outcome-item:last-child {
+      border-bottom: none;
+    }
+
+    .outcome-item:hover {
+      background: var(--paper-alt);
+    }
+
+    .outcome-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--rust);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 60px;
+    }
+
+    .outcome-text {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .outcome-text strong {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    /* Marquee */
+    .marquee-bar {
+      background: var(--rust);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      color: var(--paper);
+    }
+
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(245, 242, 236, 0.5);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 8rem 5%;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      color: rgba(14, 14, 14, 0.06);
+      line-height: 1;
+      margin-right: 1.5rem;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 500px;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* AI Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .service-card {
+      background: var(--paper);
+      padding: 3rem 2.5rem;
+      position: relative;
+      transition: background 0.3s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      background: var(--ink);
+    }
+
+    .service-card:hover .service-name {
+      color: var(--paper);
+    }
+
+    .service-card:hover .service-desc {
+      color: rgba(245, 242, 236, 0.7);
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--rust);
+      color: var(--paper);
+      border-color: var(--rust);
+    }
+
+    .service-card:hover .service-num {
+      color: rgba(245, 242, 236, 0.08);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--paper-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 2rem;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+
+    .service-num {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: rgba(14, 14, 14, 0.08);
+      transition: color 0.3s;
+      line-height: 1;
+    }
+
+    .service-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    /* Development Grid - Editorial style */
+    .dev-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .dev-card {
+      border-top: 2px solid var(--ink);
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dev-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+
+    .dev-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--ink);
+    }
+
+    .dev-tech {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--rust);
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .dev-desc {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* Process */
+    .process-bg {
+      background: var(--ink);
+      padding: 8rem 5%;
+    }
+
+    .process-bg .section-title {
+      color: var(--paper);
+    }
+
+    .process-bg .section-header {
+      border-color: rgba(245, 242, 236, 0.15);
+    }
+
+    .process-bg .section-num {
+      color: rgba(245, 242, 236, 0.05);
+    }
+
+    .process-bg .section-sub {
+      color: rgba(245, 242, 236, 0.6);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(245, 242, 236, 0.15);
+      border: 1px solid rgba(245, 242, 236, 0.15);
+    }
+
+    .process-step {
+      padding: 3rem 2.5rem;
+      background: var(--ink);
+      transition: background 0.3s;
+    }
+
+    .process-step:hover {
+      background: #151515;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--rust);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .step-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: rgba(245, 242, 236, 0.6);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 5%;
+      background: var(--paper-alt);
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .test-card {
+      background: var(--paper);
+      padding: 3rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .test-quote {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .test-quote::before {
+      content: '"';
+      font-family: 'DM Serif Display', serif;
+      font-size: 4rem;
+      color: var(--rust);
+      opacity: 0.3;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .test-author-info h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .test-author-info p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* About Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+
+    .about-content p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .about-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about-list-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .about-list-item::before {
+      content: '→';
+      color: var(--rust);
+      font-weight: bold;
+    }
+
+    /* CTA / Contact Section */
+    .contact-section {
+      background: var(--ink);
+      padding: 8rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left .cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      color: var(--paper);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left .cta-headline em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .contact-left p {
+      font-size: 16px;
+      color: rgba(245, 242, 236, 0.6);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 14px;
+      color: rgba(245, 242, 236, 0.5);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-detail svg {
+      flex-shrink: 0;
+      color: var(--rust);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--paper);
+      padding: 3rem;
+      border: 1px solid var(--border);
+    }
+
+    .form-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--border);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--rust);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 1rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--rust);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .form-success svg {
+      color: var(--rust);
+      margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* CTA Strip */
+    .cta-strip {
+      background: var(--rust);
+      padding: 6rem 5%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--paper);
+      line-height: 1.1;
+    }
+
+    .cta-headline em {
+      font-style: italic;
+    }
+
+    .btn-white {
+      background: var(--paper);
+      color: var(--rust);
+      padding: 1.2rem 3rem;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-white:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      padding: 4rem 5% 2rem;
+      color: var(--paper);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(245, 242, 236, 0.15);
+      padding-bottom: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      color: rgba(245, 242, 236, 0.6);
+      font-size: 14px;
+      max-width: 300px;
+      line-height: 1.6;
+    }
+
+    .footer-links-wrap {
+      display: flex;
+      gap: 4rem;
+    }
+
+    .footer-col h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(245, 242, 236, 0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-col a {
+      color: rgba(245, 242, 236, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--rust);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(245, 242, 236, 0.4);
+    }
+
+    /* Responsive */
+    @media(max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+      }
+
+      .hero-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 5%;
+      }
+
+      .hero-right {
+        padding: 4rem 5%;
+      }
+
+      .services-grid,
+      .process-steps,
+      .test-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .hero-headline {
+        font-size: 3rem;
+      }
+
+      .dev-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .process-steps,
+      .test-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-strip {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .footer-links-wrap {
+        flex-wrap: wrap;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Reveal Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-mark">9B</div>
-    <div class="logo-text">9th Bit <span>Technologies</span></div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#development">Engineering</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="mailto:hello@9thbit.in" class="nav-cta">Get in Touch</a></li>
-  </ul>
-  <div class="burger" id="burgerBtn">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow">Engineering Intelligence</div>
-    <h1 class="hero-headline">
-      We build<br/>
-      the systems that<br/>
-      <em>drive tomorrow.</em>
-    </h1>
-    <p class="hero-sub">
-      9th Bit Technologies engineers bespoke AI automation, scalable web applications, and content solutions. We strip the friction from your operations so your team can focus on what matters.
-    </p>
-    <div class="hero-actions">
-      <a href="#services" class="btn-primary">Explore Services</a>
-      <a href="mailto:hello@9thbit.in" class="btn-ghost">Talk to our team →</a>
+  <nav>
+    <a href="#" class="logo">
+      <img src="assets/9th_logo.webp" alt="9th Bit Labs" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown" id="servicesDropdown">
+        <a href="#services">Services</a>
+        <div class="dropdown-menu">
+          <a href="#services">
+            <span class="dd-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+              </svg>
+            </span>
+            AI Automation Services
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#development">
+            <span class="dd-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+              </svg>
+            </span>
+            Engineering Services
+          </a>
+        </div>
+      </li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <div class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
     </div>
-  </div>
+  </nav>
 
-  <div class="hero-right">
-    <div class="agent-card">
-      <div class="agent-card-header">
-        <span class="agent-card-title">AI Sales Agent — Live</span>
-        <span class="agent-status"><span class="agent-status-dot"></span>Active</span>
-      </div>
-      <div class="agent-chat">
-        <div class="chat-bubble user">We're losing leads after the first contact. Sales team can't follow up fast enough.</div>
-        <div class="chat-bubble agent">Got it. I've reviewed your pipeline — <strong>63 warm leads</strong> went cold last month from delayed follow-ups. I can handle initial outreach, qualification, and scheduling automatically. Want me to draft the first sequence?</div>
-        <div class="chat-bubble user">Yes — but make sure it doesn't sound robotic.</div>
-        <div class="chat-bubble agent">Always. I write in your brand voice, reference their specific context, and know when to hand off to your team. <strong>Closing rate typically improves 2–3x</strong> within 60 days.</div>
-      </div>
-      <div class="agent-input-row">
-        <span class="agent-input-fake">Ask your AI agent anything…</span>
-        <button class="agent-send">Send</button>
-      </div>
-    </div>
-
-    <div class="outcome-list">
-      <div class="outcome-item">
-        <span class="outcome-num">10x</span>
-        <div class="outcome-text"><strong>Faster Response Times</strong>Agents reply in seconds, not hours — 24/7, no breaks.</div>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-num">80%</span>
-        <div class="outcome-text"><strong>Queries Handled Automatically</strong>Your team focuses on high-value work only.</div>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-num">3x</span>
-        <div class="outcome-text"><strong>Average Conversion Lift</strong>Intelligent follow-ups that actually convert.</div>
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Engineering Intelligence</div>
+      <h1 class="hero-headline">
+        We build<br />
+        the systems that<br />
+        <em>drive tomorrow.</em>
+      </h1>
+      <p class="hero-sub">
+        9th Bit Labs engineers bespoke AI automation, scalable web applications, and content solutions. We strip
+        the friction from your operations so your team can focus on what matters.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="mailto:contact@9thbit.org" class="btn-ghost">Talk to our team →</a>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="marquee-bar">
-  <div class="marquee-track">
-    <span class="marquee-item">Process Automation <span class="marquee-dot"></span></span>
-    <span class="marquee-item">AI-Powered Workflows <span class="marquee-dot"></span></span>
-    <span class="marquee-item">High-Performance Web Apps <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Data Pipeline Engineering <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Custom LLM Integrations <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Business Intelligence <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Process Automation <span class="marquee-dot"></span></span>
-    <span class="marquee-item">AI-Powered Workflows <span class="marquee-dot"></span></span>
-    <span class="marquee-item">High-Performance Web Apps <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Data Pipeline Engineering <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Custom LLM Integrations <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Business Intelligence <span class="marquee-dot"></span></span>
-  </div>
-</div>
-
-<section class="section" id="services">
-  <div class="section-header reveal">
-    <div style="display:flex; align-items:baseline;">
-      <div class="section-num">01</div>
-      <div>
-        <h2 class="section-title">AI Automation Services</h2>
-        <p class="section-sub">Transform your operations with intelligent agents that automate workflows, drive sales, and enhance customer experiences.</p>
+    <div class="hero-right">
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <span class="agent-card-title">AI Sales Agent — Live</span>
+          <span class="agent-status"><span class="agent-status-dot"></span>Active</span>
+        </div>
+        <div class="agent-chat">
+          <div class="chat-bubble user">We're losing leads after the first contact. Sales team can't follow up fast
+            enough.</div>
+          <div class="chat-bubble agent">Got it. I've reviewed your pipeline — <strong>63 warm leads</strong> went cold
+            last month from delayed follow-ups. I can handle initial outreach, qualification, and scheduling
+            automatically. Want me to draft the first sequence?</div>
+          <div class="chat-bubble user">Yes — but make sure it doesn't sound robotic.</div>
+          <div class="chat-bubble agent">Always. I write in your brand voice, reference their specific context, and know
+            when to hand off to your team. <strong>Closing rate typically improves 2–3x</strong> within 60 days.</div>
+        </div>
+        <div class="agent-input-row">
+          <span class="agent-input-fake">Ask your AI agent anything…</span>
+          <button class="agent-send">Send</button>
+        </div>
       </div>
-    </div>
-    <a href="mailto:hello@9thbit.in" class="btn-ghost" style="white-space: nowrap;">Request Audit →</a>
-  </div>
 
-  <div class="services-grid reveal" id="ai-services-container">
-    <!-- AI Services will be dynamically injected here -->
-  </div>
-</section>
-
-<section class="section" id="development" style="padding-top: 4rem;">
-  <div class="section-header reveal">
-    <div style="display:flex; align-items:baseline;">
-      <div class="section-num">02</div>
-      <div>
-        <h2 class="section-title">High-Performance Engineering</h2>
-        <p class="section-sub">Scalable, secure, and blazing fast applications built on modern, future-proof tech stacks.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="dev-grid reveal" id="dev-services-container">
-    <!-- Dev Services will be dynamically injected here -->
-  </div>
-</section>
-
-<section class="process-bg" id="process">
-  <div class="section-header reveal">
-    <div style="display:flex; align-items:baseline;">
-      <div class="section-num">03</div>
-      <div>
-        <h2 class="section-title">Fast, Focused,<br>AI-Accelerated Process</h2>
-        <p class="section-sub">Our methodology is designed for speed without sacrifice. Every project is driven by clear goals and intelligent delivery.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="process-steps reveal">
-    <div class="process-step">
-      <span class="step-num">01</span>
-      <h3 class="step-name">Discovery & Scope</h3>
-      <p class="step-desc">We dive deep into your goals, stack, and constraints to define a sharp project scope with measurable outcomes. No assumptions.</p>
-    </div>
-    <div class="process-step">
-      <span class="step-num">02</span>
-      <h3 class="step-name">AI-Augmented Design</h3>
-      <p class="step-desc">Prototypes are built fast using AI tooling — tested, iterated, and validated before a single line of production code is written.</p>
-    </div>
-    <div class="process-step">
-      <span class="step-num">03</span>
-      <h3 class="step-name">Development Sprints</h3>
-      <p class="step-desc">We ship in tight sprints with full transparency, integrating AI components throughout the stack while maintaining rigorous quality standards.</p>
-    </div>
-    <div class="process-step">
-      <span class="step-num">04</span>
-      <h3 class="step-name">Deploy & Grow</h3>
-      <p class="step-desc">Live deployment, team onboarding, and ongoing optimization. We stay on as a strategic technical partner as your business evolves.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="about-grid reveal">
-    <div class="about-content">
-      <h2>Built on the<br>Frontier of AI</h2>
-      <p>9th Bit Technologies is an AI-native agency. Every project we take on benefits from our deep expertise in large language models, automation engineering, and modern software development.</p>
-      <p>We don't just build software; we build intelligent systems designed to think, adapt, and scale alongside your business.</p>
-      <div class="about-list">
-        <div class="about-list-item">AI-first approach to every engagement</div>
-        <div class="about-list-item">Full-stack capabilities from idea to deployment</div>
-        <div class="about-list-item">Transparent, sprint-based delivery model</div>
-        <div class="about-list-item">Post-launch support and iterative improvement</div>
-      </div>
-    </div>
-    <div style="border: 1px solid var(--border); padding: 3rem; background: var(--paper-alt);">
-       <h3 style="font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 2rem;">Our Stack</h3>
-       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-         <div>
-           <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">AI & LLMs</h4>
-           <p style="font-size: 14px; color: var(--slate);">OpenAI, Anthropic, LangChain, Pinecone, LlamaIndex</p>
-         </div>
-         <div>
-           <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Frontend</h4>
-           <p style="font-size: 14px; color: var(--slate);">React, Next.js, TypeScript, Tailwind, Figma</p>
-         </div>
-         <div>
-           <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Backend & Data</h4>
-           <p style="font-size: 14px; color: var(--slate);">Python, Node.js, FastAPI, PostgreSQL, Redis</p>
-         </div>
-         <div>
-           <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Infrastructure</h4>
-           <p style="font-size: 14px; color: var(--slate);">AWS, Vercel, Docker, CI/CD pipelines</p>
-         </div>
-       </div>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials" id="testimonials">
-  <div class="section-header reveal" style="border: none; margin-bottom: 2rem;">
-    <h2 class="section-title">Trusted by Innovators</h2>
-  </div>
-  <div class="test-grid reveal">
-    <div class="test-card">
-      <p class="test-quote">9th Bit transformed our customer support completely. The AI agents handle 80% of our inquiries with better satisfaction scores than our human baseline.</p>
-      <div class="test-author">
-        <div class="test-author-info">
-          <h4>Sarah Jenkins</h4>
-          <p>COO at TechFlow</p>
+      <div class="outcome-list">
+        <div class="outcome-item">
+          <span class="outcome-num">10x</span>
+          <div class="outcome-text"><strong>Faster Response Times</strong>Agents reply in seconds, not hours — 24/7, no
+            breaks.</div>
+        </div>
+        <div class="outcome-item">
+          <span class="outcome-num">80%</span>
+          <div class="outcome-text"><strong>Queries Handled Automatically</strong>Your team focuses on high-value work
+            only.</div>
+        </div>
+        <div class="outcome-item">
+          <span class="outcome-num">3x</span>
+          <div class="outcome-text"><strong>Average Conversion Lift</strong>Intelligent follow-ups that actually
+            convert.</div>
         </div>
       </div>
     </div>
-    <div class="test-card">
-      <p class="test-quote">Their team built our hiring platform in record time. The AI shortlisting feature alone has saved our HR department hundreds of hours every week.</p>
-      <div class="test-author">
-        <div class="test-author-info">
-          <h4>David Chen</h4>
-          <p>VP of Engineering</p>
+  </section>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-item">Process Automation <span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI-Powered Workflows <span class="marquee-dot"></span></span>
+      <span class="marquee-item">High-Performance Web Apps <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Data Pipeline Engineering <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Custom LLM Integrations <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Business Intelligence <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Process Automation <span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI-Powered Workflows <span class="marquee-dot"></span></span>
+      <span class="marquee-item">High-Performance Web Apps <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Data Pipeline Engineering <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Custom LLM Integrations <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Business Intelligence <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="section-header reveal">
+      <div style="display:flex; align-items:baseline;">
+        <div class="section-num">01</div>
+        <div>
+          <h2 class="section-title">AI Automation Services</h2>
+          <p class="section-sub">Transform your operations with intelligent agents that automate workflows, drive sales,
+            and enhance customer experiences.</p>
+        </div>
+      </div>
+      <a href="mailto:contact@9thbit.org" class="btn-ghost" style="white-space: nowrap;">Request Audit →</a>
+    </div>
+
+    <div class="services-grid reveal" id="ai-services-container">
+      <!-- AI Services will be dynamically injected here -->
+    </div>
+  </section>
+
+  <section class="section" id="development" style="padding-top: 4rem;">
+    <div class="section-header reveal">
+      <div style="display:flex; align-items:baseline;">
+        <div class="section-num">02</div>
+        <div>
+          <h2 class="section-title">High-Performance Engineering</h2>
+          <p class="section-sub">Scalable, secure, and blazing fast applications built on modern, future-proof tech
+            stacks.</p>
         </div>
       </div>
     </div>
-    <div class="test-card">
-      <p class="test-quote">We needed a premium web app and an AI sales executive integrated seamlessly. 9th Bit delivered exactly that, and our conversion rates have doubled.</p>
-      <div class="test-author">
-        <div class="test-author-info">
-          <h4>Elena Rodriguez</h4>
-          <p>Founder, ScaleUp SaaS</p>
+
+    <div class="dev-grid reveal" id="dev-services-container">
+      <!-- Dev Services will be dynamically injected here -->
+    </div>
+  </section>
+
+  <section class="process-bg" id="process">
+    <div class="section-header reveal">
+      <div style="display:flex; align-items:baseline;">
+        <div class="section-num">03</div>
+        <div>
+          <h2 class="section-title">Fast, Focused,<br>AI-Accelerated Process</h2>
+          <p class="section-sub">Our methodology is designed for speed without sacrifice. Every project is driven by
+            clear goals and intelligent delivery.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="cta-strip" id="contact">
-  <h2 class="cta-headline">
-    Ready to add intelligence<br/>
-    <em>to your business?</em>
-  </h2>
-  <a href="mailto:hello@9thbit.in" class="btn-white">Let's Talk Business →</a>
-</section>
-
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">9th Bit Technologies</div>
-      <p class="footer-desc">AI-powered engineering and automation solutions for the businesses building tomorrow.</p>
-    </div>
-    <div class="footer-links-wrap">
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#services">AI Automation</a></li>
-          <li><a href="#development">Web Development</a></li>
-          <li><a href="#development">App Development</a></li>
-          <li><a href="#services">Data Integration</a></li>
-        </ul>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <span class="step-num">01</span>
+        <h3 class="step-name">Discovery & Scope</h3>
+        <p class="step-desc">We dive deep into your goals, stack, and constraints to define a sharp project scope with
+          measurable outcomes. No assumptions.</p>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="mailto:hello@9thbit.in">Contact Us</a></li>
-        </ul>
+      <div class="process-step">
+        <span class="step-num">02</span>
+        <h3 class="step-name">AI-Augmented Design</h3>
+        <p class="step-desc">Prototypes are built fast using AI tooling — tested, iterated, and validated before a
+          single line of production code is written.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-num">03</span>
+        <h3 class="step-name">Development Sprints</h3>
+        <p class="step-desc">We ship in tight sprints with full transparency, integrating AI components throughout the
+          stack while maintaining rigorous quality standards.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-num">04</span>
+        <h3 class="step-name">Deploy & Grow</h3>
+        <p class="step-desc">Live deployment, team onboarding, and ongoing optimization. We stay on as a strategic
+          technical partner as your business evolves.</p>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 9th Bit Technologies. Nagpur, India.</p>
-    <div style="display:flex; gap: 1rem;">
-      <a href="#" style="color: inherit; text-decoration: none;">Twitter</a>
-      <a href="#" style="color: inherit; text-decoration: none;">LinkedIn</a>
-    </div>
-  </div>
-</footer>
+  </section>
 
-<script>
-  // Fetch services data and render dynamically
-  async function loadServices() {
-    try {
-      const response = await fetch('services.json');
-      const data = await response.json();
-      
-      const aiContainer = document.getElementById('ai-services-container');
-      if (aiContainer && data.aiServices) {
-        aiContainer.innerHTML = data.aiServices.map(service => `
+  <section class="section" id="about">
+    <div class="about-grid reveal">
+      <div class="about-content">
+        <h2>Built on the<br>Frontier of AI</h2>
+        <p>9th Bit Labs is an AI-native agency. Every project we take on benefits from our deep expertise in
+          large language models, automation engineering, and modern software development.</p>
+        <p>We don't just build software; we build intelligent systems designed to think, adapt, and scale alongside your
+          business.</p>
+        <div class="about-list">
+          <div class="about-list-item">AI-first approach to every engagement</div>
+          <div class="about-list-item">Full-stack capabilities from idea to deployment</div>
+          <div class="about-list-item">Transparent, sprint-based delivery model</div>
+          <div class="about-list-item">Post-launch support and iterative improvement</div>
+        </div>
+      </div>
+      <div style="border: 1px solid var(--border); padding: 3rem; background: var(--paper-alt);">
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 2rem;">Our Stack</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div>
+            <h4
+              style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+              AI & LLMs</h4>
+            <p style="font-size: 14px; color: var(--slate);">OpenAI, Anthropic, LangChain, Pinecone, LlamaIndex</p>
+          </div>
+          <div>
+            <h4
+              style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+              Frontend</h4>
+            <p style="font-size: 14px; color: var(--slate);">React, Next.js, TypeScript, Tailwind, Figma</p>
+          </div>
+          <div>
+            <h4
+              style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+              Backend & Data</h4>
+            <p style="font-size: 14px; color: var(--slate);">Python, Node.js, FastAPI, PostgreSQL, Redis</p>
+          </div>
+          <div>
+            <h4
+              style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--rust); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+              Infrastructure</h4>
+            <p style="font-size: 14px; color: var(--slate);">AWS, Vercel, Docker, CI/CD pipelines</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="section-header reveal" style="border: none; margin-bottom: 2rem;">
+      <h2 class="section-title">Trusted by Innovators</h2>
+    </div>
+    <div class="test-grid reveal">
+      <div class="test-card">
+        <p class="test-quote">9th 9thBitLabs transformed our customer support completely. The AI agents handle 80% of
+          our
+          inquiries with better satisfaction scores than our human baseline.</p>
+        <div class="test-author">
+          <div class="test-author-info">
+            <h4>Sarah Jenkins</h4>
+            <p>COO at TechFlow</p>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">Their team built our hiring platform in record time. The AI shortlisting feature alone has
+          saved our HR department hundreds of hours every week.</p>
+        <div class="test-author">
+          <div class="test-author-info">
+            <h4>David Chen</h4>
+            <p>VP of Engineering</p>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">We needed a premium web app and an AI sales executive integrated seamlessly. 9th Bit
+          delivered exactly that, and our conversion rates have doubled.</p>
+        <div class="test-author">
+          <div class="test-author-info">
+            <h4>Elena Rodriguez</h4>
+            <p>Founder, ScaleUp SaaS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section reveal" id="contact">
+    <div class="contact-left">
+      <h2 class="cta-headline">Ready to add<br><em>intelligence</em><br>to your business?</h2>
+      <p>Tell us about your project. We'll get back to you within 24 hours with a clear plan of action — no fluff, no
+        sales pitch.</p>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+        contact@9thbit.org
+      </div>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Nagpur, India
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-success" id="formSuccess">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+        <h3>Message Sent!</h3>
+        <p>We'll be in touch within 24 hours.</p>
+      </div>
+      <div id="formBody">
+        <div class="form-title">Let's Talk Business</div>
+        <div class="form-subtitle">Fill in your details and we'll craft a custom proposal.</div>
+        <form id="contactForm" action="https://formsubmit.co/contact@9thbit.org" method="POST">
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="New Enquiry — 9th Bit Labs Website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Full Name *</label>
+              <input type="text" id="cf-name" name="name" placeholder="Jhon Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Work Email *</label>
+              <input type="email" id="cf-email" name="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-company">Company</label>
+              <input type="text" id="cf-company" name="company" placeholder="Acme Corp">
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Phone Number</label>
+              <input type="tel" id="cf-phone" name="phone" placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cf-service">Service Interested In *</label>
+            <select id="cf-service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>AI Automation & Agents</option>
+              <option>Web Application Development</option>
+              <option>Mobile App Development</option>
+              <option>Data Pipeline & Integration</option>
+              <option>Custom LLM Integration</option>
+              <option>Content & SEO Automation</option>
+              <option>Other / Not Sure Yet</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cf-budget">Estimated Budget</label>
+            <select id="cf-budget" name="budget">
+              <option value="" disabled selected>Select a range…</option>
+              <option>Under ₹50K</option>
+              <option>₹50K – ₹2L</option>
+              <option>₹2L – ₹5L</option>
+              <option>₹5L – ₹10L</option>
+              <option>₹10L+</option>
+              <option>Let's discuss</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cf-message">Tell Us About Your Project *</label>
+            <textarea id="cf-message" name="message"
+              placeholder="Describe what you're building, the problem you want to solve, or any specific requirements…"
+              required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit" id="formSubmitBtn">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">9th Bit Labs</div>
+        <p class="footer-desc">AI-powered engineering and automation solutions for the businesses building tomorrow.</p>
+      </div>
+      <div class="footer-links-wrap">
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">AI Automation</a></li>
+            <li><a href="#development">Web Development</a></li>
+            <li><a href="#development">App Development</a></li>
+            <li><a href="#services">Data Integration</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="mailto:contact@9thbit.org">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Careers</h4>
+          <ul>
+            <li><a
+                href="mailto:contact@9thbit.org?subject=Internship%20Application%20%E2%80%94%209th%20Bit%20Labs&body=Hi%209th%20Bit%20Labs%20team%2C%0A%0AI%20am%20interested%20in%20applying%20for%20an%20internship.%0A%0AName%3A%0ACollege%2FUniversity%3A%0ASkills%3A%0AAvailability%3A%0A">Apply
+                as Intern</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 9th Bit Labs. Nagpur, India.</p>
+      <div style="display:flex; gap: 1rem;">
+        <a href="https://x.com/9thBitLabs" style="color: inherit; text-decoration: none;">Twitter</a>
+        <a href="https://www.linkedin.com/company/9thbitlabs"
+          style="color: inherit; text-decoration: none;">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch services data and render dynamically
+    async function loadServices() {
+      try {
+        const response = await fetch('services.json');
+        const data = await response.json();
+
+        const aiContainer = document.getElementById('ai-services-container');
+        if (aiContainer && data.aiServices) {
+          aiContainer.innerHTML = data.aiServices.map(service => `
           <div class="service-card">
             <div class="service-num">${service.num}</div>
             <div class="service-icon">${service.icon}</div>
@@ -1032,11 +1665,11 @@
             <div class="service-desc">${service.desc}</div>
           </div>
         `).join('');
-      }
+        }
 
-      const devContainer = document.getElementById('dev-services-container');
-      if (devContainer && data.devServices) {
-        devContainer.innerHTML = data.devServices.map(service => `
+        const devContainer = document.getElementById('dev-services-container');
+        if (devContainer && data.devServices) {
+          devContainer.innerHTML = data.devServices.map(service => `
           <div class="dev-card">
             <div class="dev-card-header">
               <h3 class="dev-title">${service.title}</h3>
@@ -1045,70 +1678,123 @@
             <p class="dev-desc">${service.desc}</p>
           </div>
         `).join('');
+        }
+
+        // Apply transition delays to dynamically added cards
+        document.querySelectorAll('.service-card, .dev-card').forEach((card, i) => {
+          card.style.transitionDelay = (i % 4 * 0.1) + 's';
+        });
+      } catch (error) {
+        console.error("Error loading services:", error);
       }
-
-      // Apply transition delays to dynamically added cards
-      document.querySelectorAll('.service-card, .dev-card').forEach((card, i) => {
-        card.style.transitionDelay = (i % 4 * 0.1) + 's';
-      });
-    } catch (error) {
-      console.error("Error loading services:", error);
     }
-  }
 
-  // Call loadServices immediately
-  loadServices();
+    // Call loadServices immediately
+    loadServices();
 
-  // Intersection observer for reveal animations
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { 
-        e.target.classList.add('visible'); 
-        io.unobserve(e.target); 
+    // Intersection observer for reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+
+    // Stagger children in services grid
+    document.querySelectorAll('.service-card, .dev-card, .process-step, .test-card').forEach((card, i) => {
+      card.style.transitionDelay = (i % 4 * 0.1) + 's';
+    });
+
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', () => {
+      const isVisible = navLinks.style.display === 'flex';
+      if (isVisible) {
+        navLinks.style.display = 'none';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = 'var(--paper)';
+        navLinks.style.padding = '2rem 5%';
+        navLinks.style.borderBottom = '1px solid var(--border)';
+        navLinks.style.alignItems = 'flex-start';
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => io.observe(el));
 
-  // Stagger children in services grid
-  document.querySelectorAll('.service-card, .dev-card, .process-step, .test-card').forEach((card, i) => {
-    card.style.transitionDelay = (i % 4 * 0.1) + 's';
-  });
-
-  // Mobile menu
-  const burger = document.getElementById('burgerBtn');
-  const navLinks = document.querySelector('.nav-links');
-  
-  burger.addEventListener('click', () => {
-    const isVisible = navLinks.style.display === 'flex';
-    if(isVisible) {
-      navLinks.style.display = 'none';
-    } else {
-      navLinks.style.display = 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '100%';
-      navLinks.style.left = '0';
-      navLinks.style.width = '100%';
-      navLinks.style.background = 'var(--paper)';
-      navLinks.style.padding = '2rem 5%';
-      navLinks.style.borderBottom = '1px solid var(--border)';
-      navLinks.style.alignItems = 'flex-start';
+    // Services dropdown — touch/click toggle for mobile
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    if (servicesDropdown) {
+      servicesDropdown.querySelector('a').addEventListener('click', (e) => {
+        // On narrow screens where hover doesn't apply, toggle the menu
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          servicesDropdown.classList.toggle('open');
+        }
+      });
+      // Close dropdown when a sub-link is clicked
+      servicesDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          servicesDropdown.classList.remove('open');
+        });
+      });
     }
-  });
 
-  // Navbar scroll effect
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) {
-      nav.style.background = 'rgba(245,242,236,0.95)';
-      nav.style.backdropFilter = 'blur(10px)';
-    } else {
-      nav.style.background = 'var(--paper)';
-      nav.style.backdropFilter = 'none';
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (servicesDropdown && !servicesDropdown.contains(e.target)) {
+        servicesDropdown.classList.remove('open');
+      }
+    });
+
+    // Navbar scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(245,242,236,0.95)';
+        nav.style.backdropFilter = 'blur(10px)';
+      } else {
+        nav.style.background = 'var(--paper)';
+        nav.style.backdropFilter = 'none';
+      }
+    }, { passive: true });
+
+    // Contact form — AJAX submit (no redirect)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('formSubmitBtn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        const formData = new FormData(contactForm);
+        // Set _next to current page so FormSubmit doesn't redirect
+        formData.set('_next', window.location.href);
+
+        try {
+          await fetch('https://formsubmit.co/ajax/contact@9thbit.org', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData
+          });
+          document.getElementById('formBody').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } catch {
+          btn.textContent = 'Failed — try again';
+          btn.disabled = false;
+        }
+      });
     }
-  }, { passive: true });
-</script>
+  </script>
 </body>
+
 </html>
