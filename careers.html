@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers — 9th Bit Labs</title>
+  <meta name="description" content="Join 9th Bit Labs. We're looking for passionate interns ready to build the future of AI and software.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0E0E0E; --ink-light: #1A1A1A; --paper: #F5F2EC;
+      --paper-alt: #EAE6D9; --rust: #C94B20; --slate: #3A3A48;
+      --muted: #7A7A82; --border: rgba(14,14,14,0.12);
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 5%; background: var(--paper); border-bottom: 1px solid var(--border); transition: background 0.3s; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 36px; width: auto; max-width: 140px; display: block; object-fit: contain; object-position: left center; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--slate); letter-spacing: 0.03em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 0.6rem 1.5rem; font-weight: 500 !important; border-radius: 4px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--rust) !important; }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger span { width: 24px; height: 2px; background: var(--ink); display: block; }
+
+    /* HERO */
+    .careers-hero { padding: 8rem 10% 5rem; border-bottom: 1px solid var(--border); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.5rem; }
+    .eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--rust); }
+    .careers-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; color: var(--ink); margin-bottom: 1.5rem; }
+    .careers-hero h1 em { font-style: italic; color: var(--rust); }
+    .careers-hero p { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.75; }
+
+    /* OPENING CARD */
+    .openings { padding: 5rem 10%; }
+    .openings-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.15em; color: var(--rust); margin-bottom: 2rem; }
+    .job-card { border: 1px solid var(--border); background: var(--paper); display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 2rem; padding: 2.5rem 3rem; margin-bottom: 1px; transition: background 0.2s; }
+    .job-card:hover { background: var(--paper-alt); }
+    .job-tag-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid var(--border); color: var(--slate); }
+    .tag.active { background: var(--rust); color: var(--paper); border-color: var(--rust); }
+    .job-title { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.2; }
+    .job-meta { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+    .job-desc { font-size: 15px; color: var(--slate); line-height: 1.75; max-width: 640px; }
+    .job-desc ul { margin: 1rem 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .apply-btn { background: var(--ink); color: var(--paper); padding: 0.85rem 2rem; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; border: none; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; transition: background 0.2s; margin-top: 0.5rem; }
+    .apply-btn:hover { background: var(--rust); }
+
+    /* PERKS */
+    .perks { background: var(--ink); padding: 5rem 10%; }
+    .perks-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--paper); margin-bottom: 3rem; }
+    .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(245,242,236,0.1); border: 1px solid rgba(245,242,236,0.1); }
+    .perk { background: var(--ink); padding: 2.5rem 2rem; transition: background 0.2s; }
+    .perk:hover { background: #151515; }
+    .perk-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .perk h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--paper); margin-bottom: 0.5rem; }
+    .perk p { font-size: 14px; color: rgba(245,242,236,0.6); line-height: 1.65; }
+
+    /* FORM SECTION */
+    .apply-section { padding: 6rem 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; border-top: 1px solid var(--border); }
+    .apply-left h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--ink); line-height: 1.1; margin-bottom: 1rem; }
+    .apply-left h2 em { font-style: italic; color: var(--rust); }
+    .apply-left p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+    .apply-detail { display: flex; align-items: center; gap: 0.75rem; font-size: 14px; color: var(--muted); margin-bottom: 0.6rem; }
+    .apply-detail svg { flex-shrink: 0; color: var(--rust); }
+
+    /* Form */
+    .apply-form-wrap { background: var(--paper-alt); padding: 2.5rem; border: 1px solid var(--border); }
+    .form-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); margin-bottom: 0.4rem; }
+    .form-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.1rem; }
+    .form-group label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.7rem 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 14px;
+      color: var(--ink); background: var(--paper); border: 1px solid var(--border);
+      outline: none; transition: border-color 0.2s; appearance: none; -webkit-appearance: none; border-radius: 0;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rust); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; background: var(--ink); color: var(--paper); border: none; padding: 0.95rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.25rem; }
+    .form-submit:hover { background: var(--rust); }
+    .form-success { display: none; text-align: center; padding: 3rem 1rem; }
+    .form-success svg { color: var(--rust); margin-bottom: 1rem; }
+    .form-success h3 { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .form-success p { color: var(--muted); font-size: 14px; }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: var(--paper); padding: 3rem 10%; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(245,242,236,0.1); flex-wrap: wrap; gap: 1rem; }
+    footer p { font-size: 14px; color: rgba(245,242,236,0.5); }
+    footer a { color: rgba(245,242,236,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    footer a:hover { color: var(--rust); }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      .apply-section { grid-template-columns: 1fr; gap: 3rem; }
+      .perks-grid { grid-template-columns: 1fr; }
+      .job-card { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .careers-hero { padding: 7rem 5% 4rem; }
+      .openings, .apply-section { padding: 4rem 5%; }
+      .perks { padding: 4rem 5%; }
+    }
+    @media(max-width: 768px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">
+      <img src="assets/9th_logo.webp" alt="9th Bit Labs" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <div class="burger" id="burgerBtn"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="careers-hero">
+    <div class="eyebrow">Careers at 9th Bit Labs</div>
+    <h1>Build the future<br>of <em>intelligent</em><br>software.</h1>
+    <p>We're a small, ambitious team engineering AI-native products. If you love building real things and learning fast, you'll fit right in.</p>
+  </section>
+
+  <!-- OPENING -->
+  <section class="openings">
+    <div class="openings-label">Open Positions — 1</div>
+    <div class="job-card" id="opening">
+      <div>
+        <div class="job-tag-row">
+          <span class="tag active">Hiring</span>
+          <span class="tag">Internship</span>
+          <span class="tag">On-site / Remote</span>
+          <span class="tag">Nagpur, India</span>
+        </div>
+        <h2 class="job-title">Software Engineering Intern</h2>
+        <p class="job-meta">Full-Stack &amp; AI · 2–6 months · Stipend provided</p>
+        <div class="job-desc">
+          <p>Work alongside our core team to build real features, ship AI integrations, and contribute to client-facing products from day one. No busy-work — you'll own modules and see your code in production.</p>
+          <ul>
+            <li>Build and maintain web apps using React, Next.js, or vanilla HTML/CSS/JS</li>
+            <li>Integrate LLM APIs (OpenAI, Anthropic) into automation pipelines</li>
+            <li>Work with Python/Node.js backends and REST APIs</li>
+            <li>Participate in sprint planning, code reviews, and client demos</li>
+            <li>Learn how to architect scalable, AI-first products</li>
+          </ul>
+        </div>
+      </div>
+      <a href="#apply" class="apply-btn">Apply Now →</a>
+    </div>
+  </section>
+
+  <!-- PERKS -->
+  <section class="perks">
+    <h2 class="perks-title">Why intern<br>with us?</h2>
+    <div class="perks-grid">
+      <div class="perk">
+        <div class="perk-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <h3>Real Work, Real Impact</h3>
+        <p>Your code ships to production. You build things real users interact with — not tutorial projects.</p>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <h3>AI-First Environment</h3>
+        <p>Deep exposure to LLMs, automation, and the modern AI stack from day one.</p>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Mentorship & Growth</h3>
+        <p>Direct access to the founding team. We invest in teaching you how to think like an engineer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="apply-section" id="apply">
+    <div class="apply-left">
+      <h2>Apply as<br><em>Software</em><br>Engineering Intern</h2>
+      <p>Fill out the form and we'll get back to you within 48 hours. No lengthy process — just a quick call and we move fast.</p>
+      <div class="apply-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contact@9thbit.org
+      </div>
+      <div class="apply-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Nagpur, India
+      </div>
+    </div>
+
+    <div class="apply-form-wrap">
+      <div class="form-success" id="applySuccess">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Application Received!</h3>
+        <p>We'll review your application and reach out within 48 hours.</p>
+      </div>
+      <div id="applyFormBody">
+        <div class="form-title">Internship Application</div>
+        <div class="form-subtitle">Software Engineering Intern · 9th Bit Labs</div>
+        <form id="applyForm" action="https://formsubmit.co/contact@9thbit.org" method="POST">
+          <input type="hidden" name="_subject" value="Internship Application — 9th Bit Labs">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="position" value="Software Engineering Intern">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ap-name">Full Name *</label>
+              <input type="text" id="ap-name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="ap-email">Email *</label>
+              <input type="email" id="ap-email" name="email" placeholder="you@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ap-phone">Phone *</label>
+              <input type="tel" id="ap-phone" name="phone" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label for="ap-college">College / University *</label>
+              <input type="text" id="ap-college" name="college" placeholder="MIT, Pune" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ap-year">Year of Study *</label>
+              <select id="ap-year" name="year" required>
+                <option value="" disabled selected>Select year…</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+                <option>Postgraduate</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ap-availability">Availability *</label>
+              <select id="ap-availability" name="availability" required>
+                <option value="" disabled selected>Select duration…</option>
+                <option>1 Month</option>
+                <option>2 Months</option>
+                <option>3 Months</option>
+                <option>6 Months</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ap-skills">Skills & Tech Stack *</label>
+            <input type="text" id="ap-skills" name="skills" placeholder="e.g. React, Python, Node.js, OpenAI API…" required>
+          </div>
+
+          <div class="form-group">
+            <label for="ap-portfolio">GitHub / Portfolio URL</label>
+            <input type="url" id="ap-portfolio" name="portfolio" placeholder="https://github.com/yourname">
+          </div>
+
+          <div class="form-group">
+            <label for="ap-why">Why 9th Bit Labs? *</label>
+            <textarea id="ap-why" name="why" placeholder="Tell us what excites you about working with us and what you hope to build…" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit" id="applySubmitBtn">Submit Application →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 9th Bit Labs. Nagpur, India.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="index.html">Home</a>
+      <a href="mailto:contact@9thbit.org">Contact</a>
+      <a href="https://www.linkedin.com/company/9thbitlabs">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Burger menu
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? 'none' : 'flex';
+      if (!open) {
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = 'var(--paper)';
+        navLinks.style.padding = '1.5rem 5%';
+        navLinks.style.borderBottom = '1px solid var(--border)';
+        navLinks.style.alignItems = 'flex-start';
+      }
+    });
+
+    // Navbar scroll blur
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 50 ? 'rgba(245,242,236,0.95)' : 'var(--paper)';
+      nav.style.backdropFilter = window.scrollY > 50 ? 'blur(10px)' : 'none';
+    }, { passive: true });
+
+    // AJAX form submit
+    const applyForm = document.getElementById('applyForm');
+    if (applyForm) {
+      applyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('applySubmitBtn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const formData = new FormData(applyForm);
+        try {
+          await fetch('https://formsubmit.co/ajax/contact@9thbit.org', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData
+          });
+          document.getElementById('applyFormBody').style.display = 'none';
+          document.getElementById('applySuccess').style.display = 'block';
+        } catch {
+          btn.textContent = 'Failed — try again';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
