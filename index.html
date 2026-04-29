@@ -765,6 +765,14 @@
       line-height: 1.6;
     }
 
+    /* Scroll offset for fixed navbar on anchor links */
+    section[id], div[id="contact"] {
+      scroll-margin-top: 68px;
+    }
+    @media(max-width: 768px) {
+      section[id], div[id="contact"] { scroll-margin-top: 62px; }
+    }
+
     /* ── Category Tabs ── */
     .cat-tabs {
       display: flex;
@@ -2193,10 +2201,10 @@
     function renderSubcatGrid(cat, gridEl) {
       if (!cat.subcategories || cat.subcategories.length === 0) {
         gridEl.innerHTML = `
-          <div class="subcat-card" style="grid-column:1/-1; text-align:center; padding:4rem;">
+          <div class="subcat-card" style="grid-column:1/-1; text-align:center; padding:3rem 2rem;">
             <div class="subcat-card-name">${cat.label}</div>
-            <p class="subcat-card-desc" style="max-width:480px;margin:1rem auto 2rem;">${cat.desc}</p>
-            <a href="#contact" class="btn-primary">Discuss Your Requirements →</a>
+            <p class="subcat-card-desc" style="max-width:480px;margin:0.75rem auto 1.5rem;">${cat.desc}</p>
+            <a href="#contact" style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--rust);text-decoration:none;border-bottom:1px solid var(--rust);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Discuss Requirements →</a>
           </div>`;
         return;
       }
