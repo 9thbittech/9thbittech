@@ -1549,8 +1549,9 @@
       .btn-white { padding: 1rem 2rem; width: 100%; text-align: center; }
 
       /* ── Contact ── */
-      .contact-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 4%; }
-      .contact-form { padding: 1.75rem 1.25rem; }
+      .contact-section { grid-template-columns: 1fr; gap: 0; padding: 3rem 4%; }
+      .contact-form { order: -1; padding: 1.75rem 1.25rem; margin-bottom: 2rem; } /* form first on mobile */
+      .contact-left { order: 0; padding: 2rem; }
       .form-title { font-size: 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
       .form-submit { width: 100%; padding: 1rem; }
@@ -2204,7 +2205,7 @@
           <div class="subcat-card" style="grid-column:1/-1; text-align:center; padding:3rem 2rem;">
             <div class="subcat-card-name">${cat.label}</div>
             <p class="subcat-card-desc" style="max-width:480px;margin:0.75rem auto 1.5rem;">${cat.desc}</p>
-            <a href="#contact" style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--rust);text-decoration:none;border-bottom:1px solid var(--rust);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Discuss Requirements →</a>
+            <a href="#contact" style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);text-decoration:none;padding:0.6rem 1.25rem;border-radius:2px;transition:background 0.2s;" onmouseover="this.style.background='var(--rust)'" onmouseout="this.style.background='var(--ink)'">Discuss Requirements →</a>
           </div>`;
         return;
       }
