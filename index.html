@@ -2199,6 +2199,8 @@
           <input type="hidden" name="_subject" value="New Enquiry — 9th Bit Labs Website">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
+          <!-- Redirect back to our page with ?sent=1 after successful submission -->
+          <input type="hidden" name="_next" value="https://9thbittech.github.io/?sent=1#contact">
 
           <div class="form-row">
             <div class="form-group">
@@ -2562,50 +2564,27 @@
       else { nav.style.background = 'var(--paper)'; nav.style.backdropFilter = 'none'; }
     }, { passive: true });
 
-    /* ── Contact form AJAX ── */
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('formSubmitBtn');
-        btn.textContent = 'Sending…'; btn.disabled = true;
-
-        const fd = new FormData(contactForm);
-        // Do NOT set _next in AJAX mode — it confuses FormSubmit
-        fd.delete('_next');
-
-        try {
-          const res = await fetch('https://formsubmit.co/ajax/3c470cfcbd186b7499bffd2dc05b371b', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: fd
-          });
-
-          const json = await res.json().catch(() => ({}));
-
-          if (res.ok && json.success === 'true' || json.success === true) {
-            // Clear all fields
-            contactForm.reset();
-            // Show success panel
-            document.getElementById('formBody').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-            // Restore form after 7 seconds
-            setTimeout(() => {
-              document.getElementById('formSuccess').style.display = 'none';
-              document.getElementById('formBody').style.display = 'block';
-              btn.textContent = 'Send Message →';
-              btn.disabled = false;
-            }, 7000);
-          } else {
-            throw new Error(json.message || 'Submission rejected');
-          }
-        } catch (err) {
-          console.error('Form error:', err);
-          btn.textContent = 'Failed — try again';
-          btn.disabled = false;
-        }
-      });
-    }
+    /* ── Contact form: detect FormSubmit redirect-back (╳ AJAX removed — standard POST is reliable) ── */
+    (function () {
+      const params = new URLSearchParams(location.search);
+      if (params.get('sent') === '1') {
+        // Clean URL (remove ?sent=1) without a page reload
+        window.history.replaceState({}, '', location.pathname + '#contact');
+        // Show success panel, hide form body
+        const formBody = document.getElementById('formBody');
+        const formSuccess = document.getElementById('formSuccess');
+        if (formBody) formBody.style.display = 'none';
+        if (formSuccess) formSuccess.style.display = 'block';
+        // Scroll to contact section smoothly
+        const contactEl = document.getElementById('contact');
+        if (contactEl) setTimeout(() => contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+        // Restore form after 7 seconds so visitors can submit again
+        setTimeout(() => {
+          if (formSuccess) formSuccess.style.display = 'none';
+          if (formBody) formBody.style.display = 'block';
+        }, 7000);
+      }
+    })();
   </script>
 
 </body>
