@@ -2194,13 +2194,13 @@
       <div id="formBody">
         <div class="form-title">Let's Talk Business</div>
         <div class="form-subtitle">Fill in your details and we'll craft a custom proposal.</div>
-        <form id="contactForm" action="https://formsubmit.co/3c470cfcbd186b7499bffd2dc05b371b" method="POST">
-          <!-- FormSubmit config -->
-          <input type="hidden" name="_subject" value="New Enquiry — 9th Bit Labs Website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <!-- Redirect back to our page with ?sent=1 after successful submission -->
-          <input type="hidden" name="_next" value="https://9thbittech.github.io/?sent=1#contact">
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value="034640fa-0fcb-4df0-a40d-d34601636612">
+          <input type="hidden" name="subject" value="New Enquiry — 9th Bit Labs Website">
+          <input type="hidden" name="from_name" value="9th Bit Labs Website">
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" style="display:none">
 
           <div class="form-row">
             <div class="form-group">
@@ -2564,27 +2564,47 @@
       else { nav.style.background = 'var(--paper)'; nav.style.backdropFilter = 'none'; }
     }, { passive: true });
 
-    /* ── Contact form: detect FormSubmit redirect-back (╳ AJAX removed — standard POST is reliable) ── */
-    (function () {
-      const params = new URLSearchParams(location.search);
-      if (params.get('sent') === '1') {
-        // Clean URL (remove ?sent=1) without a page reload
-        window.history.replaceState({}, '', location.pathname + '#contact');
-        // Show success panel, hide form body
-        const formBody = document.getElementById('formBody');
-        const formSuccess = document.getElementById('formSuccess');
-        if (formBody) formBody.style.display = 'none';
-        if (formSuccess) formSuccess.style.display = 'block';
-        // Scroll to contact section smoothly
-        const contactEl = document.getElementById('contact');
-        if (contactEl) setTimeout(() => contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
-        // Restore form after 7 seconds so visitors can submit again
-        setTimeout(() => {
-          if (formSuccess) formSuccess.style.display = 'none';
-          if (formBody) formBody.style.display = 'block';
-        }, 7000);
-      }
-    })();
+    /* ── Contact form — Web3Forms AJAX ── */
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('formSubmitBtn');
+        btn.textContent = 'Sending…'; btn.disabled = true;
+
+        // Serialize form to JSON (Web3Forms prefers JSON)
+        const formData = new FormData(contactForm);
+        const payload = {};
+        formData.forEach((val, key) => { payload[key] = val; });
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            contactForm.reset();
+            document.getElementById('formBody').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            setTimeout(() => {
+              document.getElementById('formSuccess').style.display = 'none';
+              document.getElementById('formBody').style.display = 'block';
+              btn.textContent = 'Send Message →';
+              btn.disabled = false;
+            }, 7000);
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        } catch (err) {
+          console.error('Form error:', err);
+          btn.textContent = 'Failed — try again';
+          btn.disabled = false;
+        }
+      });
+    }
   </script>
 
 </body>
