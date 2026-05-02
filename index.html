@@ -58,9 +58,11 @@
     a {
       color: inherit;
     }
+
     a:visited {
       color: inherit;
     }
+
     a:active {
       color: inherit;
     }
@@ -78,9 +80,11 @@
       justify-content: center;
       padding: 1.5rem;
     }
+
     .policy-modal-overlay.open {
       display: flex;
     }
+
     .policy-modal {
       background: var(--paper);
       color: var(--ink);
@@ -90,9 +94,10 @@
       max-height: 88vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 32px 80px rgba(14,14,14,0.35);
+      box-shadow: 0 32px 80px rgba(14, 14, 14, 0.35);
       overflow: hidden;
     }
+
     .policy-modal-header {
       display: flex;
       align-items: center;
@@ -101,11 +106,13 @@
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
     }
+
     .policy-modal-header h2 {
       font-family: 'DM Serif Display', serif;
       font-size: 1.4rem;
       font-weight: 400;
     }
+
     .policy-modal-close {
       background: none;
       border: none;
@@ -116,7 +123,11 @@
       padding: 0.25rem;
       transition: color 0.2s;
     }
-    .policy-modal-close:hover { color: var(--rust); }
+
+    .policy-modal-close:hover {
+      color: var(--rust);
+    }
+
     .policy-modal-body {
       overflow-y: auto;
       padding: 2rem;
@@ -124,6 +135,7 @@
       line-height: 1.75;
       color: var(--slate);
     }
+
     .policy-modal-body h3 {
       font-family: 'DM Serif Display', serif;
       font-size: 1.1rem;
@@ -131,13 +143,26 @@
       color: var(--ink);
       margin: 1.75rem 0 0.5rem;
     }
-    .policy-modal-body h3:first-child { margin-top: 0; }
-    .policy-modal-body p { margin-bottom: 0.75rem; }
+
+    .policy-modal-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .policy-modal-body p {
+      margin-bottom: 0.75rem;
+    }
+
     .policy-modal-body ul {
       margin: 0.5rem 0 0.75rem 1.25rem;
     }
-    .policy-modal-body ul li { margin-bottom: 0.25rem; }
-    .policy-modal-body strong { color: var(--ink); }
+
+    .policy-modal-body ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    .policy-modal-body strong {
+      color: var(--ink);
+    }
 
     /* Navigation */
     nav {
@@ -1996,6 +2021,7 @@
       <li><a href="#process">Process</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="https://research.9thbit.org" target="_blank" rel="noopener noreferrer">Research</a></li>
       <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
     </ul>
     <div class="burger" id="burgerBtn">
@@ -2016,6 +2042,7 @@
       <li><a href="#process">Process</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="https://research.9thbit.org" target="_blank" rel="noopener noreferrer">Research</a></li>
       <li class="mob-cta"><a href="#contact">Get in Touch</a></li>
     </ul>
   </aside>
@@ -2381,9 +2408,19 @@
           </ul>
         </div>
         <div class="footer-col">
+          <h4>Research</h4>
+          <ul>
+            <li><a href="research/index.html">All Articles</a></li>
+            <li><a href="research/index.html?filter=AI+Research">AI Research</a></li>
+            <li><a href="research/index.html?filter=Engineering">Engineering</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
           <h4>Legal</h4>
           <ul>
-            <li><a href="#" id="openPaymentPolicy" onclick="document.getElementById('paymentPolicyModal').classList.add('open'); return false;">Payments &amp; Refund Policy</a></li>
+            <li><a href="#" id="openPaymentPolicy"
+                onclick="document.getElementById('paymentPolicyModal').classList.add('open'); return false;">Payments
+                &amp; Refund Policy</a></li>
           </ul>
         </div>
       </div>
@@ -2409,7 +2446,8 @@
   </footer>
 
   <!-- Payments & Refund Policy Modal -->
-  <div class="policy-modal-overlay" id="paymentPolicyModal" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
+  <div class="policy-modal-overlay" id="paymentPolicyModal" role="dialog" aria-modal="true"
+    aria-labelledby="policyModalTitle">
     <div class="policy-modal">
       <div class="policy-modal-header">
         <h2 id="policyModalTitle">Payments &amp; Refund Policy</h2>
@@ -2417,8 +2455,12 @@
       </div>
       <div class="policy-modal-body">
         <h3>1. Overview</h3>
-        <p>This Payments &amp; Refund Policy (&ldquo;Policy&rdquo;) governs all payments, billing terms, cancellations, and refund conditions for services provided by <strong>9th Bit Labs</strong> (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), an AI technology solutions agency based in India.</p>
-        <p>By engaging our services, signing a proposal, or making any payment to us, the client (&ldquo;Client&rdquo;, &ldquo;you&rdquo;, or &ldquo;your&rdquo;) agrees to this Policy.</p>
+        <p>This Payments &amp; Refund Policy (&ldquo;Policy&rdquo;) governs all payments, billing terms, cancellations,
+          and refund conditions for services provided by <strong>9th Bit Labs</strong> (&ldquo;Company&rdquo;,
+          &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), an AI technology solutions agency based in India.
+        </p>
+        <p>By engaging our services, signing a proposal, or making any payment to us, the client (&ldquo;Client&rdquo;,
+          &ldquo;you&rdquo;, or &ldquo;your&rdquo;) agrees to this Policy.</p>
 
         <h3>2. Accepted Payment Currencies</h3>
         <p><strong>International Clients</strong></p>
@@ -2434,7 +2476,8 @@
         </ul>
         <p>Additional international currencies may be accepted upon mutual agreement.</p>
         <p><strong>Indian Clients</strong></p>
-        <p>For clients based in India, we only accept payments in Indian Rupees (INR), in compliance with applicable Indian financial and taxation regulations.</p>
+        <p>For clients based in India, we only accept payments in Indian Rupees (INR), in compliance with applicable
+          Indian financial and taxation regulations.</p>
 
         <h3>3. Payment Methods</h3>
         <p>We may accept payments through:</p>
@@ -2442,15 +2485,18 @@
           <li>Bank transfer / wire transfer</li>
           <li>UPI (for Indian clients)</li>
         </ul>
-        <p>Clients are responsible for any bank charges, intermediary fees, currency conversion charges, or payment gateway fees unless otherwise agreed in writing.</p>
+        <p>Clients are responsible for any bank charges, intermediary fees, currency conversion charges, or payment
+          gateway fees unless otherwise agreed in writing.</p>
 
         <h3>4. Project Pricing &amp; Estimates</h3>
-        <p>All quotations, proposals, and estimates provided by the Company are valid for the period specified in the proposal or invoice.</p>
+        <p>All quotations, proposals, and estimates provided by the Company are valid for the period specified in the
+          proposal or invoice.</p>
         <p>Unless expressly stated otherwise:</p>
         <ul>
           <li>Prices are exclusive of applicable taxes</li>
           <li>GST may apply to Indian clients</li>
-          <li>International clients may be responsible for taxes, duties, withholding taxes, or local compliance obligations in their jurisdiction</li>
+          <li>International clients may be responsible for taxes, duties, withholding taxes, or local compliance
+            obligations in their jurisdiction</li>
         </ul>
 
         <h3>5. Advance Payments</h3>
@@ -2463,12 +2509,14 @@
         <p>For milestone-based projects, subsequent milestones must be paid before the next phase begins.</p>
 
         <h3>6. Subscription &amp; Retainer Services</h3>
-        <p>For recurring services, retainers, AI maintenance, automation monitoring, support, hosting, or consulting subscriptions:</p>
+        <p>For recurring services, retainers, AI maintenance, automation monitoring, support, hosting, or consulting
+          subscriptions:</p>
         <ul>
           <li>Billing may occur monthly, quarterly, or annually</li>
           <li>Payments are due in advance unless otherwise agreed</li>
           <li>Late payments may result in suspension of services</li>
-          <li>Retainer fees reserve dedicated time and resources and are generally non-refundable once the billing cycle begins</li>
+          <li>Retainer fees reserve dedicated time and resources and are generally non-refundable once the billing cycle
+            begins</li>
         </ul>
 
         <h3>7. Late Payments</h3>
@@ -2476,13 +2524,16 @@
         <ul>
           <li>We reserve the right to pause or suspend ongoing work</li>
           <li>Delivery timelines may be extended accordingly</li>
-          <li>Access to deliverables, repositories, APIs, dashboards, or hosted systems may be restricted until outstanding dues are cleared</li>
+          <li>Access to deliverables, repositories, APIs, dashboards, or hosted systems may be restricted until
+            outstanding dues are cleared</li>
           <li>Interest or late fees may apply where legally permissible and contractually agreed</li>
         </ul>
 
         <h3>8. Refund Policy</h3>
         <p><strong>General Policy</strong></p>
-        <p>Due to the nature of AI consulting, software development, automation engineering, and digital technology services, payments made for completed work, allocated resources, consultation time, research, strategy, development, or delivered milestones are generally non-refundable.</p>
+        <p>Due to the nature of AI consulting, software development, automation engineering, and digital technology
+          services, payments made for completed work, allocated resources, consultation time, research, strategy,
+          development, or delivered milestones are generally non-refundable.</p>
         <p><strong>Eligible Refund Scenarios</strong></p>
         <p>Refunds may be considered only under the following circumstances:</p>
         <ul>
@@ -2510,11 +2561,13 @@
         <ul>
           <li>All completed work up to the cancellation date will be billed</li>
           <li>Advance payments already utilized toward completed work are non-refundable</li>
-          <li>Any remaining unused balance may be refunded at the Company&rsquo;s discretion after deducting applicable costs and committed resources</li>
+          <li>Any remaining unused balance may be refunded at the Company&rsquo;s discretion after deducting applicable
+            costs and committed resources</li>
         </ul>
 
         <h3>10. Chargebacks &amp; Payment Disputes</h3>
-        <p>Clients agree to contact us first to resolve any payment concerns before initiating a chargeback or payment dispute.</p>
+        <p>Clients agree to contact us first to resolve any payment concerns before initiating a chargeback or payment
+          dispute.</p>
         <p>Unauthorized or bad-faith chargebacks may result in:</p>
         <ul>
           <li>Immediate suspension of services</li>
@@ -2523,20 +2576,24 @@
         </ul>
 
         <h3>11. Taxes &amp; Compliance</h3>
-        <p>Clients are responsible for complying with applicable tax regulations in their jurisdiction. Where required, international invoices may be issued without GST subject to export-of-service regulations under Indian law.</p>
+        <p>Clients are responsible for complying with applicable tax regulations in their jurisdiction. Where required,
+          international invoices may be issued without GST subject to export-of-service regulations under Indian law.
+        </p>
 
         <h3>12. Currency Conversion</h3>
-        <p>Where invoices are issued in a foreign currency, exchange rates may vary based on banking or payment provider rates. The final received amount must match the invoiced amount net of deductions unless otherwise agreed.</p>
+        <p>Where invoices are issued in a foreign currency, exchange rates may vary based on banking or payment provider
+          rates. The final received amount must match the invoiced amount net of deductions unless otherwise agreed.</p>
 
         <h3>13. Modifications to This Policy</h3>
-        <p>We reserve the right to update or modify this Policy at any time without prior notice. Updated versions become effective upon publication on our website or communication to clients.</p>
+        <p>We reserve the right to update or modify this Policy at any time without prior notice. Updated versions
+          become effective upon publication on our website or communication to clients.</p>
 
         <h3>14. Contact Information</h3>
         <p>For billing, payment, or refund-related queries, please contact:</p>
         <p><strong>9th Bit Labs</strong><br>
-        Email: <a href="mailto:contact@9thbit.org" style="color:var(--rust);">contact@9thbit.org</a><br>
-        Website: <a href="https://9thbit.org" style="color:var(--rust);">9thbit.org</a><br>
-        Location: Nagpur, India</p>
+          Email: <a href="mailto:contact@9thbit.org" style="color:var(--rust);">contact@9thbit.org</a><br>
+          Website: <a href="https://9thbit.org" style="color:var(--rust);">9thbit.org</a><br>
+          Location: Nagpur, India</p>
       </div>
     </div>
   </div>
