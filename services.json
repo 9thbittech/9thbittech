@@ -75,6 +75,37 @@
           "label": "AI Videos & Images",
           "desc": "High-quality AI-generated visual content for marketing campaigns and social platforms.",
           "niches": []
+        },
+        {
+          "id": "seo-automation",
+          "label": "SEO Automation",
+          "desc": "Programmatic SEO and AI-driven content generation to scale organic traffic.",
+          "niches": []
+        },
+        {
+          "id": "content-strategy",
+          "label": "Content Strategy",
+          "desc": "End-to-end content planning, creation, and distribution tailored to your brand.",
+          "niches": []
+        }
+      ]
+    },
+    {
+      "id": "automation",
+      "label": "Automation",
+      "desc": "Workflow optimization and process automation to eliminate manual tasks.",
+      "subcategories": [
+        {
+          "id": "workflow-automation",
+          "label": "Workflow Automation",
+          "desc": "Connecting apps and APIs to automate data transfer and routine operations.",
+          "niches": []
+        },
+        {
+          "id": "data-pipelines",
+          "label": "Data Pipelines",
+          "desc": "Automated ETL processes ensuring your data flows seamlessly across systems.",
+          "niches": []
         }
       ]
     },
@@ -127,6 +158,12 @@
           "id": "mvp-gold",
           "label": "Gold Package",
           "desc": "Full-featured MVP with advanced integrations, analytics, and scaling infrastructure.",
+          "niches": []
+        },
+        {
+          "id": "mvp-platinum",
+          "label": "Platinum Package",
+          "desc": "Enterprise-grade MVP with custom AI models, high-availability architecture, and dedicated post-launch support.",
           "niches": []
         }
       ]
