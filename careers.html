@@ -685,11 +685,14 @@
       <div id="applyFormBody">
         <div class="form-title">Internship Application</div>
         <div class="form-subtitle">Software Engineering Intern · 9th Bit Labs</div>
-        <form id="applyForm" action="https://formsubmit.co/contact@9thbit.org" method="POST">
-          <input type="hidden" name="_subject" value="Internship Application — 9th Bit Labs">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
+        <form id="applyForm" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value="034640fa-0fcb-4df0-a40d-d34601636612">
+          <input type="hidden" name="subject" value="Internship Application — 9th Bit Labs">
+          <input type="hidden" name="from_name" value="9th Bit Labs Careers">
           <input type="hidden" name="position" value="Software Engineering Intern">
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" style="display:none">
 
           <div class="form-row">
             <div class="form-group">
@@ -798,7 +801,7 @@
       nav.style.backdropFilter = window.scrollY > 50 ? 'blur(10px)' : 'none';
     }, { passive: true });
 
-    // AJAX form submit
+    // AJAX form submit — Web3Forms (same as contact form)
     const applyForm = document.getElementById('applyForm');
     if (applyForm) {
       applyForm.addEventListener('submit', async (e) => {
@@ -806,16 +809,29 @@
         const btn = document.getElementById('applySubmitBtn');
         btn.textContent = 'Sending…';
         btn.disabled = true;
+
+        // Serialize form to JSON (Web3Forms prefers JSON)
         const formData = new FormData(applyForm);
+        const payload = {};
+        formData.forEach((val, key) => { payload[key] = val; });
+
         try {
-          await fetch('https://formsubmit.co/ajax/contact@9thbit.org', {
+          const res = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: formData
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
           });
-          document.getElementById('applyFormBody').style.display = 'none';
-          document.getElementById('applySuccess').style.display = 'block';
-        } catch {
+          const data = await res.json();
+
+          if (data.success) {
+            applyForm.reset();
+            document.getElementById('applyFormBody').style.display = 'none';
+            document.getElementById('applySuccess').style.display = 'block';
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        } catch (err) {
+          console.error('Form error:', err);
           btn.textContent = 'Failed — try again';
           btn.disabled = false;
         }
