@@ -579,7 +579,7 @@
 
   <!-- OPENING -->
   <section class="openings">
-    <div class="openings-label">Open Positions — 1</div>
+    <div class="openings-label">Open Positions — 3</div>
     <div class="job-card" id="opening">
       <div>
         <div class="job-tag-row">
@@ -602,7 +602,53 @@
           </ul>
         </div>
       </div>
-      <a href="#apply" class="apply-btn">Apply Now →</a>
+      <a href="#apply" class="apply-btn" onclick="document.getElementById('ap-position').value='Software Engineering Intern'">Apply Now →</a>
+    </div>
+
+    <div class="job-card">
+      <div>
+        <div class="job-tag-row">
+          <span class="tag active">Hiring</span>
+          <span class="tag">Internship</span>
+          <span class="tag">On-site / Remote</span>
+          <span class="tag">Nagpur, India</span>
+        </div>
+        <h2 class="job-title">Digital Marketing Intern</h2>
+        <p class="job-meta">Growth &amp; Strategy · 2–6 months </p>
+        <div class="job-desc">
+          <p>Help us grow our digital presence and reach the right audience. You will get hands-on experience with modern marketing tools and strategies.</p>
+          <ul>
+            <li>Manage and grow our social media channels</li>
+            <li>Assist in planning and executing digital marketing campaigns</li>
+            <li>Analyze metrics to optimize campaign performance</li>
+            <li>Collaborate with the team on SEO and content distribution</li>
+          </ul>
+        </div>
+      </div>
+      <a href="#apply" class="apply-btn" onclick="document.getElementById('ap-position').value='Digital Marketing Intern'">Apply Now →</a>
+    </div>
+
+    <div class="job-card">
+      <div>
+        <div class="job-tag-row">
+          <span class="tag active">Hiring</span>
+          <span class="tag">Internship</span>
+          <span class="tag">On-site / Remote</span>
+          <span class="tag">Nagpur, India</span>
+        </div>
+        <h2 class="job-title">Content Creation Intern</h2>
+        <p class="job-meta">Copywriting &amp; Media · 2–6 months </p>
+        <div class="job-desc">
+          <p>Craft compelling narratives and educational content around AI, engineering, and tech. Your work will directly impact our brand voice and audience engagement.</p>
+          <ul>
+            <li>Write technical and non-technical blog posts, case studies, and newsletters</li>
+            <li>Create engaging visual or video content for our platforms</li>
+            <li>Research industry trends to inform content strategy</li>
+            <li>Work closely with engineering to translate complex topics into accessible content</li>
+          </ul>
+        </div>
+      </div>
+      <a href="#apply" class="apply-btn" onclick="document.getElementById('ap-position').value='Content Creation Intern'">Apply Now →</a>
     </div>
   </section>
 
@@ -651,7 +697,7 @@
   <!-- APPLICATION FORM -->
   <section class="apply-section" id="apply">
     <div class="apply-left">
-      <h2>Apply as<br><em>Software</em><br>Engineering Intern</h2>
+      <h2>Apply for an<br><em>Internship</em><br>at 9th Bit</h2>
       <p>Fill out the form and we'll get back to you within 48 hours. No lengthy process — just a quick call and we move
         fast.</p>
       <div class="apply-detail">
@@ -684,15 +730,24 @@
       </div>
       <div id="applyFormBody">
         <div class="form-title">Internship Application</div>
-        <div class="form-subtitle">Software Engineering Intern · 9th Bit Labs</div>
+        <div class="form-subtitle">9th Bit Labs</div>
         <form id="applyForm" action="https://api.web3forms.com/submit" method="POST">
           <!-- Web3Forms config -->
           <input type="hidden" name="access_key" value="034640fa-0fcb-4df0-a40d-d34601636612">
           <input type="hidden" name="subject" value="Internship Application — 9th Bit Labs">
           <input type="hidden" name="from_name" value="9th Bit Labs Careers">
-          <input type="hidden" name="position" value="Software Engineering Intern">
           <!-- Honeypot spam protection -->
           <input type="checkbox" name="botcheck" style="display:none">
+
+          <div class="form-group">
+            <label for="ap-position">Position Applying For *</label>
+            <select id="ap-position" name="position" required>
+              <option value="" disabled selected>Select a position…</option>
+              <option value="Software Engineering Intern">Software Engineering Intern</option>
+              <option value="Digital Marketing Intern">Digital Marketing Intern</option>
+              <option value="Content Creation Intern">Content Creation Intern</option>
+            </select>
+          </div>
 
           <div class="form-row">
             <div class="form-group">
