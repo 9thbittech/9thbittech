@@ -2421,6 +2421,10 @@
             <li><a href="#" id="openPaymentPolicy"
                 onclick="document.getElementById('paymentPolicyModal').classList.add('open'); return false;">Payments
                 &amp; Refund Policy</a></li>
+            <li><a href="#" id="openTermsPolicy"
+                onclick="document.getElementById('termsPolicyModal').classList.add('open'); return false;">Terms of Service</a></li>
+            <li><a href="#" id="openLegalDisclaimer"
+                onclick="document.getElementById('legalDisclaimerModal').classList.add('open'); return false;">Legal Disclaimer</a></li>
           </ul>
         </div>
       </div>
@@ -2594,6 +2598,412 @@
           Email: <a href="mailto:contact@9thbit.org" style="color:var(--rust);">contact@9thbit.org</a><br>
           Website: <a href="https://9thbit.org" style="color:var(--rust);">9thbit.org</a><br>
           Location: Nagpur, India</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div class="policy-modal-overlay" id="termsPolicyModal" role="dialog" aria-modal="true" aria-labelledby="termsPolicyTitle">
+    <div class="policy-modal">
+      <div class="policy-modal-header">
+        <h2 id="termsPolicyTitle">Terms of Service</h2>
+        <button class="policy-modal-close" id="closeTermsPolicyModal" aria-label="Close policy modal">&times;</button>
+      </div>
+      <div class="policy-modal-body">
+        <p>Effective Date: May 1, 2026</p>
+        <p>These Terms of Service (&ldquo;Terms&rdquo;) govern the use of services provided by <strong>9th Bit Labs</strong> (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), an AI technology solutions agency based in Nagpur, India.</p>
+        <p>By engaging our services, signing a proposal, accessing our deliverables, or making any payment to us, you (&ldquo;Client&rdquo;, &ldquo;you&rdquo;, or &ldquo;your&rdquo;) agree to be bound by these Terms.</p>
+
+        <h3>1. Services</h3>
+        <p>9th Bit Labs provides technology-related services including, but not limited to:</p>
+        <ul>
+          <li>Artificial Intelligence (AI) development</li>
+          <li>Automation engineering</li>
+          <li>Software development</li>
+          <li>AI agents and workflow systems</li>
+          <li>API integrations</li>
+          <li>Data processing and analytics</li>
+          <li>Cloud-based solutions</li>
+          <li>Technical consulting</li>
+          <li>Maintenance and support services</li>
+        </ul>
+        <p>The scope, deliverables, timelines, and pricing for each engagement will be defined in a separate proposal, agreement, invoice, statement of work, or written communication.</p>
+
+        <h3>2. Eligibility</h3>
+        <p>By using our services, you confirm that:</p>
+        <ul>
+          <li>You are legally capable of entering into a binding agreement</li>
+          <li>You have the authority to act on behalf of your organization (if applicable)</li>
+          <li>All information provided to us is accurate and complete</li>
+        </ul>
+
+        <h3>3. Project Engagement</h3>
+        <p>A project is considered officially engaged when any of the following occurs:</p>
+        <ul>
+          <li>A proposal or agreement is signed</li>
+          <li>An invoice is paid</li>
+          <li>Written approval to begin work is provided</li>
+          <li>An advance payment is received</li>
+        </ul>
+        <p>We reserve the right to refuse service at our discretion.</p>
+
+        <h3>4. Client Responsibilities</h3>
+        <p>The Client agrees to:</p>
+        <ul>
+          <li>Provide accurate requirements, materials, and access credentials</li>
+          <li>Respond to requests for feedback, approvals, and clarifications in a timely manner</li>
+          <li>Ensure they possess the legal rights to any content, data, or assets shared with us</li>
+          <li>Use our deliverables lawfully and ethically</li>
+        </ul>
+        <p>Delays caused by lack of communication, missing materials, or delayed approvals may affect timelines and delivery schedules.</p>
+
+        <h3>5. Pricing &amp; Payments</h3>
+        <p>All pricing, invoices, and refunds are governed by our Payments &amp; Refund Policy.</p>
+        <p>Unless otherwise agreed:</p>
+        <ul>
+          <li>Payments may require an advance before work begins</li>
+          <li>Milestone payments must be cleared before subsequent work phases commence</li>
+          <li>Late payments may result in suspension of services</li>
+          <li>Taxes, banking fees, and currency conversion costs are the responsibility of the Client where applicable</li>
+        </ul>
+
+        <h3>6. Changes to Scope</h3>
+        <p>Any request outside the originally agreed scope may:</p>
+        <ul>
+          <li>Require revised timelines</li>
+          <li>Incur additional charges</li>
+          <li>Require a separate agreement or change order</li>
+        </ul>
+        <p>We are not obligated to perform additional work until revised terms are approved.</p>
+
+        <h3>7. Intellectual Property</h3>
+        <p><strong>Client-Owned Materials</strong></p>
+        <p>The Client retains ownership of:</p>
+        <ul>
+          <li>Pre-existing trademarks</li>
+          <li>Logos</li>
+          <li>Brand assets</li>
+          <li>Proprietary data</li>
+          <li>Materials provided by the Client</li>
+        </ul>
+        <p>The Client grants us a limited right to use such materials solely for the purpose of delivering the services.</p>
+        <p><strong>Company-Owned Materials</strong></p>
+        <p>Unless otherwise agreed in writing, we retain ownership of:</p>
+        <ul>
+          <li>Internal tools</li>
+          <li>Frameworks</li>
+          <li>Methodologies</li>
+          <li>Reusable code libraries</li>
+          <li>Automation templates</li>
+          <li>Proprietary systems</li>
+          <li>AI workflows and architectures developed independently of the Client’s proprietary information</li>
+        </ul>
+        <p><strong>Final Deliverables</strong></p>
+        <p>Upon full payment of all outstanding invoices, the Client receives ownership or applicable usage rights to the final agreed deliverables, excluding third-party tools, frameworks, and Company-owned proprietary components unless explicitly transferred in writing.</p>
+
+        <h3>8. Third-Party Services</h3>
+        <p>Projects may involve third-party platforms, APIs, cloud providers, software libraries, hosting providers, or AI models.</p>
+        <p>We are not responsible for:</p>
+        <ul>
+          <li>Downtime or failures caused by third-party providers</li>
+          <li>Changes in third-party pricing or policies</li>
+          <li>API limitations or service discontinuations</li>
+          <li>Security vulnerabilities originating from third-party systems</li>
+        </ul>
+        <p>The Client may be required to maintain separate accounts or subscriptions with such providers.</p>
+
+        <h3>9. AI &amp; Automation Disclaimer</h3>
+        <p>AI-generated outputs and automated systems may occasionally produce inaccurate, incomplete, or unexpected results.</p>
+        <p>The Client acknowledges that:</p>
+        <ul>
+          <li>AI systems are probabilistic and not guaranteed to be error-free</li>
+          <li>Human review may still be required</li>
+          <li>Final responsibility for use of outputs remains with the Client</li>
+          <li>We do not guarantee business outcomes, revenue increases, legal compliance, or operational results unless explicitly agreed in writing</li>
+        </ul>
+
+        <h3>10. Confidentiality</h3>
+        <p>Both parties agree to keep confidential information private and not disclose it to unauthorized third parties except where required by law.</p>
+        <p>Confidential information includes:</p>
+        <ul>
+          <li>Business strategies</li>
+          <li>Technical documentation</li>
+          <li>Proprietary workflows</li>
+          <li>Credentials</li>
+          <li>Client data</li>
+          <li>Financial information</li>
+        </ul>
+        <p>This obligation survives termination of the engagement.</p>
+
+        <h3>11. Data Protection &amp; Security</h3>
+        <p>We take reasonable technical and organizational measures to protect Client information.</p>
+        <p>However, no digital system can be guaranteed completely secure. The Client acknowledges risks associated with:</p>
+        <ul>
+          <li>Internet-based communications</li>
+          <li>Cloud infrastructure</li>
+          <li>Third-party platforms</li>
+          <li>AI processing systems</li>
+        </ul>
+        <p>The Client is responsible for ensuring lawful collection and usage rights for all data provided to us.</p>
+
+        <h3>12. Timelines &amp; Delivery</h3>
+        <p>Any timelines provided are estimates unless explicitly guaranteed in writing.</p>
+        <p>Delivery schedules may be affected by:</p>
+        <ul>
+          <li>Scope changes</li>
+          <li>Client delays</li>
+          <li>Third-party outages</li>
+          <li>Regulatory or compliance requirements</li>
+          <li>Technical complexities beyond reasonable control</li>
+        </ul>
+        <p>We are not liable for delays caused by such circumstances.</p>
+
+        <h3>13. Maintenance &amp; Support</h3>
+        <p>Unless specifically included in a proposal or agreement:</p>
+        <ul>
+          <li>Ongoing maintenance is not included after project delivery</li>
+          <li>Future updates, fixes, or support may require a separate support agreement or retainer</li>
+          <li>Emergency support availability is not guaranteed</li>
+        </ul>
+
+        <h3>14. Acceptable Use</h3>
+        <p>The Client agrees not to use our services, software, or deliverables for:</p>
+        <ul>
+          <li>Illegal activities</li>
+          <li>Fraudulent operations</li>
+          <li>Malicious automation</li>
+          <li>Spam or abusive communications</li>
+          <li>Intellectual property infringement</li>
+          <li>Unauthorized surveillance</li>
+          <li>Harmful or discriminatory AI use</li>
+          <li>Activities violating applicable laws or regulations</li>
+        </ul>
+        <p>We reserve the right to suspend or terminate services if misuse is detected.</p>
+
+        <h3>15. Limitation of Liability</h3>
+        <p>To the maximum extent permitted by law:</p>
+        <ul>
+          <li>Our total liability shall not exceed the total amount paid by the Client for the relevant services</li>
+          <li>We are not liable for indirect, incidental, special, consequential, or punitive damages</li>
+          <li>We are not responsible for lost profits, lost business opportunities, data loss, or operational interruptions</li>
+        </ul>
+        <p>All services are provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis unless otherwise expressly stated.</p>
+
+        <h3>16. Indemnification</h3>
+        <p>The Client agrees to indemnify and hold harmless 9th Bit Labs, its founders, employees, contractors, and affiliates from claims, liabilities, damages, or expenses arising from:</p>
+        <ul>
+          <li>Client misuse of deliverables</li>
+          <li>Violation of laws or regulations</li>
+          <li>Intellectual property infringement by materials supplied by the Client</li>
+          <li>Unauthorized or unlawful use of AI systems developed for the Client</li>
+        </ul>
+
+        <h3>17. Suspension &amp; Termination</h3>
+        <p>We reserve the right to suspend or terminate services if:</p>
+        <ul>
+          <li>Payments remain overdue</li>
+          <li>The Client breaches these Terms</li>
+          <li>The Client engages in unlawful or abusive conduct</li>
+          <li>Continuing the engagement creates legal, ethical, or security risks</li>
+        </ul>
+        <p>Upon termination:</p>
+        <ul>
+          <li>Outstanding fees remain payable</li>
+          <li>Access to systems or deliverables may be revoked until dues are cleared</li>
+          <li>Certain provisions of these Terms survive termination</li>
+        </ul>
+
+        <h3>18. Force Majeure</h3>
+        <p>We are not liable for delays or failure to perform caused by events beyond reasonable control, including but not limited to:</p>
+        <ul>
+          <li>Natural disasters</li>
+          <li>Internet outages</li>
+          <li>Cyberattacks</li>
+          <li>Government actions</li>
+          <li>War</li>
+          <li>Labor disruptions</li>
+          <li>Power failures</li>
+          <li>Third-party infrastructure failures</li>
+        </ul>
+
+        <h3>19. Governing Law &amp; Jurisdiction</h3>
+        <p>These Terms shall be governed by and interpreted in accordance with the laws of India.</p>
+        <p>Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in Nagpur, Maharashtra, India.</p>
+
+        <h3>20. Modifications to Terms</h3>
+        <p>We reserve the right to update or modify these Terms at any time.</p>
+        <p>Updated versions become effective upon publication on our website or upon communication to Clients.</p>
+        <p>Continued use of our services after updates constitutes acceptance of the revised Terms.</p>
+
+        <h3>21. Contact Information</h3>
+        <p>For legal, billing, or service-related inquiries:</p>
+        <p><strong>9th Bit Labs</strong><br>
+          Email: <a href="mailto:contact@9thbit.org" style="color:var(--rust);">contact@9thbit.org</a><br>
+          Website: <a href="https://9thbit.org" style="color:var(--rust);">9thbit.org</a><br>
+          Location: Nagpur, Maharashtra, India</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal Disclaimer Modal -->
+  <div class="policy-modal-overlay" id="legalDisclaimerModal" role="dialog" aria-modal="true" aria-labelledby="legalDisclaimerTitle">
+    <div class="policy-modal">
+      <div class="policy-modal-header">
+        <h2 id="legalDisclaimerTitle">Legal Disclaimer</h2>
+        <button class="policy-modal-close" id="closeLegalDisclaimerModal" aria-label="Close policy modal">&times;</button>
+      </div>
+      <div class="policy-modal-body">
+        <p>Effective Date: May 1, 2026</p>
+        <p>The information, services, software, automation systems, AI solutions, content, and materials provided by <strong>9th Bit Labs</strong> (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) are provided for general business and technological purposes only.</p>
+        <p>By using our website, services, deliverables, software, AI systems, automation workflows, APIs, consulting services, or related materials, you acknowledge and agree to the following disclaimers.</p>
+
+        <h3>1. No Professional Legal, Financial, or Regulatory Advice</h3>
+        <p>Our services, content, recommendations, AI outputs, and consulting materials do not constitute:</p>
+        <ul>
+          <li>Legal advice</li>
+          <li>Financial advice</li>
+          <li>Tax advice</li>
+          <li>Investment advice</li>
+          <li>Accounting advice</li>
+          <li>Regulatory compliance certification</li>
+          <li>Medical or healthcare advice</li>
+        </ul>
+        <p>Clients should consult qualified professionals before making decisions involving legal, financial, compliance, healthcare, or regulatory matters.</p>
+
+        <h3>2. AI &amp; Automation Limitations</h3>
+        <p>Artificial Intelligence systems, machine learning models, and automated workflows may generate:</p>
+        <ul>
+          <li>Inaccurate outputs</li>
+          <li>Incomplete information</li>
+          <li>Hallucinated content</li>
+          <li>Biased responses</li>
+          <li>Unexpected behavior</li>
+          <li>Incorrect classifications or recommendations</li>
+        </ul>
+        <p>While we strive to build reliable systems, we do not guarantee that AI-generated outputs will always be accurate, complete, secure, or suitable for every use case.</p>
+        <p>Human review and validation are strongly recommended before relying on any AI-generated output for operational, legal, financial, medical, or critical business decisions.</p>
+
+        <h3>3. No Guaranteed Results</h3>
+        <p>We do not guarantee:</p>
+        <ul>
+          <li>Specific business outcomes</li>
+          <li>Revenue growth</li>
+          <li>Cost savings</li>
+          <li>SEO rankings</li>
+          <li>Lead generation results</li>
+          <li>Platform approvals</li>
+          <li>Regulatory approvals</li>
+          <li>Performance improvements</li>
+          <li>Operational uptime percentages unless explicitly agreed in writing</li>
+        </ul>
+        <p>Past performance or case studies do not guarantee future results.</p>
+
+        <h3>4. Third-Party Platforms &amp; Services</h3>
+        <p>Our solutions may integrate with third-party providers including:</p>
+        <ul>
+          <li>Cloud platforms</li>
+          <li>APIs</li>
+          <li>AI model providers</li>
+          <li>Hosting providers</li>
+          <li>Analytics services</li>
+          <li>External software tools</li>
+        </ul>
+        <p>We are not responsible for:</p>
+        <ul>
+          <li>Downtime or outages</li>
+          <li>Pricing changes</li>
+          <li>API limitations</li>
+          <li>Policy changes</li>
+          <li>Security incidents</li>
+          <li>Data loss</li>
+          <li>Service discontinuation</li>
+          <li>Errors originating from third-party services</li>
+        </ul>
+        <p>Use of third-party services is subject to their respective terms and policies.</p>
+
+        <h3>5. Security Disclaimer</h3>
+        <p>Although we implement reasonable security practices, no digital system, API, cloud environment, or online transmission can be guaranteed fully secure.</p>
+        <p>Clients acknowledge risks including:</p>
+        <ul>
+          <li>Unauthorized access</li>
+          <li>Cyberattacks</li>
+          <li>Data breaches</li>
+          <li>Service interruptions</li>
+          <li>Infrastructure vulnerabilities</li>
+          <li>AI misuse by third parties</li>
+        </ul>
+        <p>The Client is responsible for maintaining proper internal security controls, access management, and backup procedures.</p>
+
+        <h3>6. Limitation of Liability</h3>
+        <p>To the fullest extent permitted by applicable law:</p>
+        <ul>
+          <li>9th Bit Labs shall not be liable for any indirect, incidental, special, consequential, punitive, or exemplary damages</li>
+          <li>We are not responsible for lost profits, business interruption, reputational damage, or data loss</li>
+          <li>Total liability shall not exceed the amount paid by the Client for the relevant services giving rise to the claim</li>
+        </ul>
+        <p>All services are provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis unless otherwise expressly agreed in writing.</p>
+
+        <h3>7. Client Responsibility</h3>
+        <p>Clients are solely responsible for:</p>
+        <ul>
+          <li>Reviewing all deliverables before deployment or public use</li>
+          <li>Ensuring compliance with local laws and regulations</li>
+          <li>Verifying AI-generated outputs</li>
+          <li>Maintaining backups of important data</li>
+          <li>Properly configuring security and permissions</li>
+          <li>Ethical and lawful use of automation systems and AI tools</li>
+        </ul>
+
+        <h3>8. Intellectual Property &amp; Third-Party Rights</h3>
+        <p>Clients are responsible for ensuring they possess lawful rights to any:</p>
+        <ul>
+          <li>Data</li>
+          <li>Images</li>
+          <li>Text</li>
+          <li>Branding</li>
+          <li>Media</li>
+          <li>Documents</li>
+          <li>APIs</li>
+          <li>Proprietary materials</li>
+        </ul>
+        <p>provided to us during the project.</p>
+        <p>We are not liable for infringement claims arising from materials supplied by the Client.</p>
+
+        <h3>9. External Links &amp; References</h3>
+        <p>Our website, deliverables, or communications may contain references or links to external websites or services.</p>
+        <p>We do not endorse or guarantee:</p>
+        <ul>
+          <li>Accuracy of external content</li>
+          <li>Availability of third-party websites</li>
+          <li>Security of external services</li>
+          <li>Third-party business practices</li>
+        </ul>
+        <p>Users access third-party resources at their own risk.</p>
+
+        <h3>10. Compliance Responsibility</h3>
+        <p>Unless explicitly agreed in writing, the Client remains solely responsible for ensuring compliance with:</p>
+        <ul>
+          <li>Data protection laws</li>
+          <li>Consumer protection laws</li>
+          <li>Industry regulations</li>
+          <li>Export controls</li>
+          <li>AI governance regulations</li>
+          <li>Tax obligations</li>
+          <li>Employment laws</li>
+          <li>Advertising and marketing laws</li>
+        </ul>
+        <p>This includes compliance in the Client’s own jurisdiction.</p>
+
+        <h3>11. Modifications to This Disclaimer</h3>
+        <p>We reserve the right to update or modify this Legal Disclaimer at any time without prior notice.</p>
+        <p>Updated versions become effective upon publication on our website or communication to Clients.</p>
+
+        <h3>12. Contact Information</h3>
+        <p>For legal or compliance-related inquiries:</p>
+        <p><strong>9th Bit Labs</strong><br>
+          Email: <a href="mailto:contact@9thbit.org" style="color:var(--rust);">contact@9thbit.org</a><br>
+          Website: <a href="https://9thbit.org" style="color:var(--rust);">9thbit.org</a><br>
+          Location: Nagpur, Maharashtra, India</p>
       </div>
     </div>
   </div>
@@ -2900,6 +3310,32 @@
       // Close on Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') policyModal.classList.remove('open');
+      });
+    }
+
+    /* ── Terms of Service Modal ── */
+    const termsModal = document.getElementById('termsPolicyModal');
+    const closeTermsBtn = document.getElementById('closeTermsPolicyModal');
+    if (termsModal && closeTermsBtn) {
+      closeTermsBtn.addEventListener('click', () => termsModal.classList.remove('open'));
+      termsModal.addEventListener('click', (e) => {
+        if (e.target === termsModal) termsModal.classList.remove('open');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') termsModal.classList.remove('open');
+      });
+    }
+
+    /* ── Legal Disclaimer Modal ── */
+    const disclaimerModal = document.getElementById('legalDisclaimerModal');
+    const closeDisclaimerBtn = document.getElementById('closeLegalDisclaimerModal');
+    if (disclaimerModal && closeDisclaimerBtn) {
+      closeDisclaimerBtn.addEventListener('click', () => disclaimerModal.classList.remove('open'));
+      disclaimerModal.addEventListener('click', (e) => {
+        if (e.target === disclaimerModal) disclaimerModal.classList.remove('open');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') disclaimerModal.classList.remove('open');
       });
     }
   </script>
